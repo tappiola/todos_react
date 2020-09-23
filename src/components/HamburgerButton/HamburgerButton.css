@@ -1,0 +1,28 @@
+@media (min-width: 768px) {
+    .left_menu_toggle {
+        display: none;
+    }
+}
+
+.left_menu_toggle {
+    border-radius: 4px;
+    padding: 4px 4px 0 4px;
+    background-color: transparent;
+    border: transparent;
+    outline: none;
+}
+
+.top_bar_btn {
+    color: hsla(0, 0%, 100%, .87);
+}
+
+.icon-hidden {
+    display: none;
+}
+
+.left_menu_toggle:hover {
+    background-color: grey;
+}
+
+
+

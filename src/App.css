@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
+#left-menu {
+    overflow: scroll;
+    width: 305px;
+    /*height: 100%;*/
+    background-color: #282828;
+    border-color: transparent;
+    padding: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#left-menu .item {
+    padding: 10px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#top-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkslateblue;
+    width: 100%;
+    height: 44px;
+    position: fixed;
+    padding: 0 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#container {
+    display: grid;
+    grid-template-rows: 44px auto;
+    height: 100vh;
+    width: 100vw;
 }
 
-.App-link {
-  color: #61dafb;
+#main {
+    grid-row: 2/3;
+    display: flex;
+    height: calc(100vh - 44px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.left-menu__category {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
+    font-weight: bold;
+}
+
+
+#main-content {
+    width: 100%;
+    padding: 60px 55px;
+}
+
+.main__title {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px 0;
+}
+
+
+.main__tasks {
+    overflow-y: auto;
+    max-height: 500px;
+    width: 100%;
+}
+
+#left-menu {
+    display: block;
+    overflow: scroll;
+    width: 305px;
+    background-color: #282828;
+    border-color: transparent;
+    padding: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+    #left-menu.hidden {
+        display: none;
+    }
 }
