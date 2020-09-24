@@ -18,3 +18,17 @@ code {
     monospace;
 }
 
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #8b8b8b;
+    /*background: darkslateblue;*/
+}
+
+::-webkit-scrollbar-track {
+    background: #171717;
+}
