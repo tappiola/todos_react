@@ -10,6 +10,7 @@ export const setProjects = projects => {
 
 export const initProjects = () => {
     return dispatch => {
-        fetchProjects().then(data => dispatch(setProjects(data)))
+        // fetchProjects().then(data => dispatch(setProjects(data)))
+        fetchProjects(data => dispatch(setProjects(data)))
     };
 };

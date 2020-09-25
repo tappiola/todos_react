@@ -4,7 +4,8 @@ export const COLLECTION = {
     PROJECTS: db.collection("projects")
 }
 
-export const fetchProjects = async () => {
-    const snapshot = await COLLECTION.PROJECTS.get();
-    return snapshot.docs.map(doc => docToObject(doc));
+export const fetchProjects = func => {
+    COLLECTION.PROJECTS.onSnapshot(
+        querySnapshot => func(querySnapshot.docs.map(doc => docToObject(doc)))
+    );
 }
