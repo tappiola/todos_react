@@ -4,7 +4,7 @@ import * as actionCreators from "../../store/actions/actionCreators";
 
 const mapStateToProps = ({projects}) => ({projects});
 
-const mapDispatchToProps = (dispatch, {history}) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onLoad: () => dispatch(actionCreators.initProjects())
     }

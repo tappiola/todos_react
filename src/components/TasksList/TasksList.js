@@ -1,7 +1,11 @@
 import {Task} from "../Task/Task";
-import React from "react";
+import React, {useEffect} from "react";
 
-export const TasksList = () => {
+export const TasksList = ({tasks, onLoad}) => {
+    useEffect(() => {
+        onLoad();
+    }, [onLoad])
+
     return <div id="main-content">
         <div className="main__title">Study</div>
         <div className="main__description">Giant pandas have a distinctive black and white coat, with black fur
@@ -10,8 +14,7 @@ export const TasksList = () => {
             10-15cm tail.
         </div>
         <div className="main__tasks">
-            {['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5', 'Task 6', 'Task 7', 'Task 8', 'Task 9', 'Task 10',
-                'Task 11', 'Task 12'].map(t => <Task key={t} task={t}/>)}
+            {tasks.map(t => <Task key={t.id} task={t.name}/>)}
         </div>
     </div>
 }

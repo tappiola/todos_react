@@ -7,13 +7,19 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_PROJECTS:
+        case actionTypes.INIT_PROJECTS:
             console.log('fetch projects')
-            console.log(action.payload)
             return {
                 ...state,
                 projects: action.payload.projects
             };
+        case actionTypes.INIT_TASKS:
+            console.log('fetch tasks')
+            return {
+                ...state,
+                tasks: action.payload.tasks
+            };
+
         default:
             return state;
     }

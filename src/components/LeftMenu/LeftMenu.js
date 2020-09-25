@@ -4,8 +4,6 @@ import {Icon, ICON_COLOR, ICON_TYPE, MediumIcon, SmallIcon} from "../../containe
 
 export const LeftMenu = ({menuOpen, projects, onLoad}) => {
 
-    // const dispatch = useDispatch();
-
     useEffect(() => {
         onLoad();
     }, [onLoad])

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {HamburgerButton} from "./containers/HamburgerButton/HamburgerButton";
 import LeftMenu from "./components/LeftMenu";
-import {TasksList} from "./components/TasksList/TasksList";
+import TasksList from "./components/TasksList";
 
 const App = () => {
     const [menuOpen, setMenuOpen] = useState(false);

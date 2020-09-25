@@ -1,2 +1,3 @@
-export const SET_PROJECTS = 'SET_PROJECTS';
+export const INIT_PROJECTS = 'INIT_PROJECTS';
+export const INIT_TASKS = 'INIT_TASKS';
 
