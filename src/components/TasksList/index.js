@@ -2,7 +2,21 @@ import {TasksList as PresentationalTasksList} from './TasksList';
 import {connect} from 'react-redux';
 import * as actionCreators from "../../store/actions/actionCreators";
 
-const mapStateToProps = ({tasks}) => ({tasks});
+const filterTasks = (tasks, projectId) => {
+    if (projectId === 'inbox') {
+        return tasks.filter(task => !task.projectId);
+    } else if (projectId === 'focus') {
+        return tasks.filter(task => task.isFocusedOn === true);
+    } else if (projectId) {
+        return tasks.filter(task => task.projectId === +projectId);
+    } else {
+        return tasks;
+    }
+};
+
+const mapStateToProps = ({tasks}, {projectId}) => (
+    {tasks: filterTasks(tasks, projectId)}
+);
 
 const mapDispatchToProps = (dispatch) => {
     return {

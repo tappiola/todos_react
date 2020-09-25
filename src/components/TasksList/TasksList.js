@@ -1,7 +1,7 @@
 import {Task} from "../Task/Task";
 import React, {useEffect} from "react";
 
-export const TasksList = ({tasks, onLoad}) => {
+export const TasksList = ({projectId, tasks, onLoad}) => {
     useEffect(() => {
         onLoad();
     }, [onLoad])
@@ -14,7 +14,7 @@ export const TasksList = ({tasks, onLoad}) => {
             10-15cm tail.
         </div>
         <div className="main__tasks">
-            {tasks.map(t => <Task key={t.id} task={t.name}/>)}
+            {tasks.map(t => <Task key={t.id} task={t}/>)}
         </div>
     </div>
 }

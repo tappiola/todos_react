@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import './Task.css';
 import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
 
-export const Task = ({task, taskComplete, taskFocused}) => {
-    const [complete, setComplete] = useState(taskComplete);
-    const [focused, setFocused] = useState(taskFocused);
+export const Task = ({task}) => {
+    const [complete, setComplete] = useState(task.isComplete);
+    const [focused, setFocused] = useState(task.isFocusedOn);
 
     return <div className="main__task">
         <div>
@@ -13,7 +13,7 @@ export const Task = ({task, taskComplete, taskFocused}) => {
                 color={ICON_COLOR.PURPLE}
                 onClick={() => setComplete(!complete)}
             />
-            <span>{task}</span>
+            <span>{task.name}</span>
         </div>
         <div>
             <Icon

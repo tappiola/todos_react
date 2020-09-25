@@ -9,7 +9,6 @@
 }
 
 .left-menu__items {
-    /*padding-left: 40px;*/
     padding: 30px;
 }
 
@@ -37,6 +36,11 @@
     font-weight: bold;
 }
 
+#left-menu a {
+    color: hsla(0, 0%, 100%, 0.87);
+    text-decoration: none;
+}
+
 .item div {
     display: flex;
     align-items: center;
@@ -52,4 +56,13 @@
         width: 0;
         transition: width 0.75s ease-in-out;
     }
+}
+
+a.active {
+    font-weight: bold;
+}
+
+a.active div {
+    background-color: #383737;
+    border-radius: 3px;
 }

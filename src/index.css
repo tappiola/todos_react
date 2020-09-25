@@ -26,7 +26,6 @@ code {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: #8b8b8b;
-    /*background: darkslateblue;*/
 }
 
 ::-webkit-scrollbar-track {
