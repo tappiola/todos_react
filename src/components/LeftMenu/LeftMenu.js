@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './LeftMenu.css';
 import {Icon, ICON_COLOR, ICON_TYPE, MediumIcon, SmallIcon} from "../../containers/Icon/Icon";
 
-export const LeftMenu = ({menuOpen}) => {
+export const LeftMenu = ({menuOpen, projects, onLoad}) => {
+
+    // const dispatch = useDispatch();
+
+    useEffect(() => {
+        onLoad();
+    }, [onLoad])
+
 
     const Project = ({name}) => <div className="project-item">
         <div>
@@ -30,10 +37,7 @@ export const LeftMenu = ({menuOpen}) => {
                 <MediumIcon iconType={ICON_TYPE.ADD} color={ICON_COLOR.GREY} classes={['expandable']}/>
             </div>
             <div className="projects-list">
-                {['Home', 'Shopping', 'Study', 'Work',
-                    'Home', 'Shopping', 'Study', 'Work',
-                    'Home', 'Shopping', 'Study', 'Work',]
-                    .map((p, i) => <Project key={i} name={p}/>)}
+                {projects.map((p, i) => <Project key={i} name={p.name}/>)}
             </div>
         </div>
     </div>
