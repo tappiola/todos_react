@@ -3,7 +3,7 @@ import './LeftMenu.css';
 import {Icon, ICON_COLOR, ICON_TYPE, MediumIcon, SmallIcon} from "../../containers/Icon/Icon";
 import {NavLink} from "react-router-dom";
 
-export const LeftMenu = ({menuOpen, projects, onLoad}) => {
+export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose}) => {
 
     useEffect(() => {
         onLoad();
@@ -12,7 +12,7 @@ export const LeftMenu = ({menuOpen, projects, onLoad}) => {
 
     const Project = ({project}) =>
         <NavLink to={`/projects/${project.id}`}>
-            <div className="project-item">
+            <div className="project-item" onClick={onMenuClose}>
                 <div>
                     <SmallIcon iconType={ICON_TYPE.CIRCLE} color={ICON_COLOR.YELLOW}/>
                     {project.name}
@@ -24,13 +24,13 @@ export const LeftMenu = ({menuOpen, projects, onLoad}) => {
     return <div id="left-menu" className={menuOpen ? '' : 'hidden'}>
         <div className="left-menu__items">
             <NavLink to={`/inbox`}>
-                <div className="item">
+                <div className="item" onClick={onMenuClose}>
                     <Icon iconType={ICON_TYPE.INBOX} color={ICON_COLOR.BLUE}/>
                     Inbox
                 </div>
             </NavLink>
             <NavLink to={`/focus`}>
-                <div className="item">
+                <div className="item" onClick={onMenuClose}>
                     <Icon iconType={ICON_TYPE.STAR} color={ICON_COLOR.YELLOW}/>
                     Focus
                 </div>

@@ -15,7 +15,7 @@ const App = () => {
             <div>Tappiola</div>
         </div>
         <div id="main">
-            <LeftMenu menuOpen={menuOpen}/>
+            <LeftMenu menuOpen={menuOpen} onMenuClose={() => setMenuOpen(false)}/>
             <Switch>
                 <Route exact path="/">
                     <Redirect to="/inbox"/>

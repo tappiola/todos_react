@@ -1,6 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
+    isProjectsFetching: true,
     projects: [],
     tasks: []
 };
@@ -11,7 +12,8 @@ const reducer = (state = initialState, action) => {
             console.log('fetch projects')
             return {
                 ...state,
-                projects: action.payload.projects
+                projects: action.payload.projects,
+                isProjectsFetching: false
             };
         case actionTypes.INIT_TASKS:
             console.log('fetch tasks')

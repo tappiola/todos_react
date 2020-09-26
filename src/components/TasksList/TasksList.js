@@ -1,13 +1,18 @@
 import {Task} from "../Task/Task";
 import React, {useEffect} from "react";
 
-export const TasksList = ({projectId, tasks, onLoad}) => {
+export const TasksList = ({projectId, project, tasks, onLoad, isProjectsFetching}) => {
+
     useEffect(() => {
         onLoad();
     }, [onLoad])
 
+    if (isProjectsFetching) {
+        return null;
+    }
+
     return <div id="main-content">
-        <div className="main__title">Study</div>
+        <div className="main__title">{project.name}</div>
         <div className="main__description">Giant pandas have a distinctive black and white coat, with black fur
             around their eyes and on their ears, muzzle, legs and shoulders. Their thick, wooly coat helps to
             keep them warm in their cool mountain homes. Adult pandas are about 150cm from nose to rump, with a
