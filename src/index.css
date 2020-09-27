@@ -31,3 +31,37 @@ code {
 ::-webkit-scrollbar-track {
     background: #171717;
 }
+
+textarea {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    resize: none;
+}
+
+button {
+    color: hsla(0, 0%, 100%, 0.87);
+    background-color: darkslateblue;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+input, select, textarea {
+    color: hsla(0, 0%, 100%, 0.87);
+    background-color: #1F1F1F;
+    border: 1px solid gray;
+}
+
+button.cancel-button {
+    background-color: #741c1c;
+}
+
+button:disabled {
+    background-color: gray;
+}

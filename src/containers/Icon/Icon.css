@@ -7,7 +7,18 @@
 
 .icon-small {
     font-size: 12px;
+}
+
+.bullet-point {
     margin: 5px 24px 5px 12px;
+}
+
+.task-checkbox {
+    opacity: 0.7;
+}
+
+.selector {
+    margin-right: 10px;
 }
 
 .icon-medium {

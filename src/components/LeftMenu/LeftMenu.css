@@ -9,61 +9,16 @@
     display: block;
 }
 
-.left-menu__items {
-    padding: 30px;
-}
-
-#left-menu .item {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-}
-
-#left-menu .project-item {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.project-item div {
-    display: flex;
-    align-items: center;
-}
-
-.left-menu__category {
-    justify-content: space-between;
-    border-bottom: 1px solid hsla(0, 0%, 100%, .1);
-    font-weight: bold;
-}
-
-#left-menu a {
-    color: hsla(0, 0%, 100%, 0.87);
-    text-decoration: none;
-}
-
-.item div {
-    display: flex;
-    align-items: center;
-}
-
 @media only screen and (max-width: 768px) {
     #left-menu {
+        z-index: 5;
         position: absolute;
         transition: width 0.4s ease-in;
+        height: calc(100% - 44px);
     }
 
     #left-menu.hidden {
         width: 0;
         transition: width 0.4s ease-out;
     }
-}
-
-a.active {
-    font-weight: bold;
-}
-
-a.active div {
-    background-color: #383737;
-    border-radius: 3px;
 }

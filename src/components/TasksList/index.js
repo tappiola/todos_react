@@ -8,7 +8,7 @@ const tasksSelector = (tasks, projectId) => {
     } else if (projectId === 'focus') {
         return tasks.filter(task => task.isFocusedOn === true);
     } else if (projectId) {
-        return tasks.filter(task => task.projectId === +projectId);
+        return tasks.filter(task => task.projectId === projectId);
     } else {
         return tasks;
     }

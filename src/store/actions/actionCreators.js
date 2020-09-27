@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import {fetchProjects, fetchTasks} from "../../firebaseActions";
+import * as firebaseActions from "../../firebaseActions";
 
 export const setProjects = projects => {
     return {
@@ -10,7 +10,7 @@ export const setProjects = projects => {
 
 export const initProjects = () => {
     return dispatch => {
-        fetchProjects(data => dispatch(setProjects(data)))
+        firebaseActions.fetchProjects(data => dispatch(setProjects(data)))
     };
 };
 
@@ -23,6 +23,21 @@ export const setTasks = tasks => {
 
 export const initTasks = () => {
     return dispatch => {
-        fetchTasks(data => dispatch(setTasks(data)))
+        firebaseActions.fetchTasks(data => dispatch(setTasks(data)))
+    };
+};
+
+export const firebaseError = (error) => {
+    return {
+        type: actionTypes.FIREBASE_ERROR,
+        payload: {error}
+    };
+}
+
+export const addProjectFb = (projectData) => {
+    return dispatch => {
+        firebaseActions.createProject(projectData)
+            .then(() => alert('success'))
+            .catch(errorData => dispatch(firebaseError(errorData)))
     };
 };

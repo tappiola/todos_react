@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import './Task.css';
 import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
+import {COLORS, DEFAULT_COLOR} from "../../constants";
 
-export const Task = ({task}) => {
+export const Task = ({task, project}) => {
     const [complete, setComplete] = useState(task.isComplete);
     const [focused, setFocused] = useState(task.isFocusedOn);
 
@@ -10,8 +11,9 @@ export const Task = ({task}) => {
         <div>
             <Icon
                 iconType={complete ? ICON_TYPE.CHECHBOX_COMPLETE : ICON_TYPE.CHECHBOX_INCOMPLETE}
-                color={ICON_COLOR.PURPLE}
+                color={COLORS[project.color] || DEFAULT_COLOR.colorCode}
                 onClick={() => setComplete(!complete)}
+                classes={['task-checkbox']}
             />
             <span>{task.name}</span>
         </div>

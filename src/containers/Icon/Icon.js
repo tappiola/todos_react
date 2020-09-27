@@ -1,5 +1,6 @@
 import './Icon.css';
 import React from "react";
+import {COLORS} from "../../constants";
 
 export const ICON_TYPE = {
     CHECHBOX_COMPLETE: 'fa-check-square',
@@ -11,17 +12,20 @@ export const ICON_TYPE = {
     ADD: 'fa-plus-circle',
     DETAILS: 'fa-chevron-right',
     DELETE: 'fa-trash-alt',
-    EDIT: 'fa-edit'
+    EDIT: 'fa-edit',
+    CLOSE: 'fa-times',
+    SELECTOR: 'fa-caret-down',
+    SELECTOR_OPEN: 'fa-caret-up'
 }
 
 export const ICON_COLOR = {
     PURPLE: 'darkslateblue',
-    ORANGE: 'orange',
-    YELLOW: 'rgba(255, 191, 0, 0.89)',
+    ORANGE: COLORS.Orange,
+    YELLOW: COLORS.Yellow,
     WHITE: 'hsla(0, 0%, 100%, 0.87)',
-    BLUE: 'lightskyblue',
-    PINK: 'palevioletred',
-    GREY: 'grey',
+    BLUE: COLORS["Light Blue"],
+    PINK: COLORS.Salmon,
+    GREY: COLORS.Grey,
 }
 
 export const Icon = ({iconType, color, onClick, classes = []}) => {
@@ -35,8 +39,8 @@ export const MediumIcon = ({iconType, color, onClick, classes = []}) => {
             <i className={`fas ${iconType} ${classes.join(' ')}`}/>
         </span>
 }
-export const SmallIcon = ({iconType, color}) => {
-    return <span className="icon-small" style={{color}}>
-                <i className={`fas ${iconType}`}/>
+export const SmallIcon = ({iconType, color, onClick, classes = []}) => {
+    return <span className="icon-small" style={{color}} onClick={onClick}>
+                <i className={`fas ${iconType} ${classes.join(' ')}`}/>
             </span>
 }

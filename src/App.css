@@ -34,6 +34,24 @@
     padding: 20px 0;
 }
 
+.backdrop {
+    background-color: rgb(68, 68, 68);
+    opacity: 0.3;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    position: fixed;
+}
+
+@media (max-width: 768px) {
+    .backdrop-mobile {
+        width: 100vw;
+        height: 100vh;
+        z-index: 3;
+        position: fixed;
+    }
+}
+
 
 .main__tasks {
     overflow-y: auto;
@@ -54,5 +72,4 @@
     #main-content {
         padding: 35px 55px;
     }
-
 }

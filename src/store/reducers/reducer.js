@@ -21,6 +21,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 tasks: action.payload.tasks
             };
+        case actionTypes.FIREBASE_ERROR:
+            alert("Firebase error");
+            return {
+                ...state,
+                error: action.payload.error
+            };
+
 
         default:
             return state;

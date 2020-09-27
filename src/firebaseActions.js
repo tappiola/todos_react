@@ -16,3 +16,11 @@ export const fetchTasks = func => {
         querySnapshot => func(querySnapshot.docs.map(doc => docToObject(doc)))
     );
 }
+
+export const createProject = async ({name, description, color}) => {
+    await COLLECTION.PROJECTS.add({name, description, color});
+}
+
+export const editProject = async ({id, name, description, color}) => {
+    await COLLECTION.PROJECTS.doc(id).set({name, description, color}, {merge: true});
+}
