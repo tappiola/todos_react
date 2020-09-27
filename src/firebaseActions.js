@@ -18,9 +18,9 @@ export const fetchTasks = func => {
 }
 
 export const createProject = async ({name, description, color}) => {
-    await COLLECTION.PROJECTS.add({name, description, color});
+    return await COLLECTION.PROJECTS.add({name, description, color});
 }
 
 export const editProject = async ({id, name, description, color}) => {
-    await COLLECTION.PROJECTS.doc(id).set({name, description, color}, {merge: true});
+    return await COLLECTION.PROJECTS.doc(id).set({name, description, color}, {merge: true});
 }
