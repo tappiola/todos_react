@@ -43,6 +43,12 @@
 
 .project-modal__description {
     padding: 4px 6px;
+    font-size: 16px;
+}
+
+.project-modal__description::placeholder,
+.project-modal__name::placeholder{
+  color: #aaaaaa;
 }
 
 .input-label {
