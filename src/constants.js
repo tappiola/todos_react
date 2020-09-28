@@ -24,3 +24,5 @@ export const COLORS = {
 export const COLORS_LIST = Object.entries(COLORS).map(e => ({humanColor: e[0], colorCode: e[1]}));
 
 export const DEFAULT_COLOR = COLORS_LIST.find(c => c.colorCode === COLORS.Grey);
+
+export const getColorObject = color => ({humanColor: color, colorCode: COLORS[color]});

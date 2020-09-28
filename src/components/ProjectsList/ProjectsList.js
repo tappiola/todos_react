@@ -4,7 +4,7 @@ import {Icon, ICON_COLOR, ICON_TYPE, MediumIcon, SmallIcon} from "../../containe
 import {NavLink} from "react-router-dom";
 import {COLORS, DEFAULT_COLOR} from "../../constants";
 
-export const ProjectsList = ({projects, onMenuClose, onProjectAdd}) => {
+export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit}) => {
 
     const Project = ({project}) =>
         <NavLink to={`/projects/${project.id}`}>
@@ -14,7 +14,12 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd}) => {
                                classes={['bullet-point']}/>
                     {project.name}
                 </div>
-                <MediumIcon iconType={ICON_TYPE.EDIT} color={ICON_COLOR.GREY} classes={['show-hover']}/>
+                <MediumIcon
+                    iconType={ICON_TYPE.EDIT}
+                    color={ICON_COLOR.GREY}
+                    classes={['show-hover']}
+                    onClick={() => onProjectEdit(project)}
+                />
             </div>
         </NavLink>
 

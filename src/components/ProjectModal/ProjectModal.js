@@ -1,17 +1,17 @@
-import './AddProjectModal.css';
+import './ProjectModal.css';
 import React, {useState} from "react";
-import {COLORS_LIST, DEFAULT_COLOR} from "../../constants";
+import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants";
 import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 
-export const AddProjectModal = ({onModalClose, onProjectAdd}) => {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [color, setColor] = useState(DEFAULT_COLOR);
+export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit}) => {
+    const [name, setName] = useState(project?.name || '');
+    const [description, setDescription] = useState(project?.description || '');
+    const [color, setColor] = useState(project?.color ? getColorObject(project.color) : DEFAULT_COLOR);
 
     return <>
         <div className="backdrop"/>
         <div className="project-modal">
-            <div className="project-modal__title">Add project</div>
+            <div className="project-modal__title">{project ? 'Edit' : 'Add'} project</div>
             <input
                 className="project-modal__name"
                 placeholder="Title"
@@ -33,11 +33,13 @@ export const AddProjectModal = ({onModalClose, onProjectAdd}) => {
                 <button className="cancel-button" onClick={onModalClose}>Cancel</button>
                 <button
                     onClick={() => {
-                        onProjectAdd({name, description, color: color.humanColor});
+                        project ?
+                            onProjectEdit(project.id, {name, description, color: color.humanColor})
+                            : onProjectAdd({name, description, color: color.humanColor});
                         onModalClose();
                     }}
                     disabled={!name}
-                >Add
+                >{project ? 'Save' : 'Add'}
                 </button>
             </div>
         </div>

@@ -27,6 +27,13 @@ export const initTasks = () => {
     };
 };
 
+export const firebaseSuccess = (message) => {
+    return {
+        type: actionTypes.FIREBASE_ERROR,
+        payload: {message}
+    };
+}
+
 export const firebaseError = (error) => {
     return {
         type: actionTypes.FIREBASE_ERROR,
@@ -38,6 +45,21 @@ export const addProjectFb = (projectData) => {
     return dispatch => {
         firebaseActions.createProject(projectData)
             .then(() => alert('success'))
+            .catch(errorData => dispatch(firebaseError(errorData)))
+    };
+};
+
+export const editProjectFb = (id, projectData) => {
+    return dispatch => {
+        firebaseActions.editProject(id, projectData)
+            .then(() => alert('success'))
+            .catch(errorData => dispatch(firebaseError(errorData)))
+    };
+};
+
+export const addTaskFb = (taskData) => {
+    return dispatch => {
+        firebaseActions.createTask(taskData)
             .catch(errorData => dispatch(firebaseError(errorData)))
     };
 };

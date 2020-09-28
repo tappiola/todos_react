@@ -1,7 +1,9 @@
 import {Task} from "../Task/Task";
 import React, {useEffect} from "react";
+import './TasksList.css';
+import TaskAdd from "../TaskAdd";
 
-export const TasksList = ({projectId, project, tasks, onLoad, isProjectsFetching}) => {
+export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
 
     useEffect(() => {
         onLoad();
@@ -17,5 +19,6 @@ export const TasksList = ({projectId, project, tasks, onLoad, isProjectsFetching
         <div className="main__tasks">
             {tasks.map(task => <Task key={task.id} task={task} project={project}/>)}
         </div>
+        {project.name !== 'Focus' && <TaskAdd project={project}/>}
     </div>
 }

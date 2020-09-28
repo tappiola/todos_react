@@ -1,0 +1,15 @@
+.task-add__button {
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.task-add__input {
+    margin: 20px 0;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #282828;
+    outline: none;
+    padding: 14px;
+    font-size: 16px;
+
+}

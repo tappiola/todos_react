@@ -21,6 +21,11 @@ export const createProject = async ({name, description, color}) => {
     return await COLLECTION.PROJECTS.add({name, description, color});
 }
 
-export const editProject = async ({id, name, description, color}) => {
+export const editProject = async (id, {name, description, color}) => {
     return await COLLECTION.PROJECTS.doc(id).set({name, description, color}, {merge: true});
+}
+
+export const createTask = async ({projectId, name}) => {
+    debugger
+    return await COLLECTION.TASKS.add({projectId, name});
 }

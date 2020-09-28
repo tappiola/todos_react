@@ -16,9 +16,9 @@ const tasksSelector = (tasks, projectId) => {
 
 const projectSelector = (projects, projectId) => {
     if (projectId === 'inbox') {
-        return {projectId, name: 'Inbox'};
+        return {id: null, name: 'Inbox'};
     } else if (projectId === 'focus') {
-        return {projectId, name: 'Focus'}
+        return {id: 'focus', name: 'Focus'}
     } else {
         return projects.find(p => p.id === projectId)
     }
