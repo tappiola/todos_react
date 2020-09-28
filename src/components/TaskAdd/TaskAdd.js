@@ -23,6 +23,7 @@ export const TaskAdd = ({project, onTaskAdd}) => {
                 onClick={() => {
                     onTaskAdd({projectId: project.id, name: taskName});
                     setTaskName('');
+                    setIsInputActive(false);
                 }}
             >Add task
             </button>

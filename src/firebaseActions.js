@@ -27,5 +27,11 @@ export const editProject = async (id, {name, description, color}) => {
 
 export const createTask = async ({projectId, name}) => {
     debugger
-    return await COLLECTION.TASKS.add({projectId, name});
+    return await COLLECTION.TASKS.add({
+        projectId,
+        name,
+        createdAt: +new Date(),
+        isFocusedOn: false,
+        isDone: false
+    });
 }

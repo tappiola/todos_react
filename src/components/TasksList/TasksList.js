@@ -1,4 +1,4 @@
-import {Task} from "../Task/Task";
+import Task from "../Task";
 import React, {useEffect} from "react";
 import './TasksList.css';
 import TaskAdd from "../TaskAdd";

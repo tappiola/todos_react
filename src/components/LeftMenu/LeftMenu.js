@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './LeftMenu.css';
-import {ProjectsList} from "../ProjectsList/ProjectsList";
+import ProjectsList from "../ProjectsList";
 import ProjectModal from "../ProjectModal";
 
 export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose}) => {
