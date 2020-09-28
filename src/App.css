@@ -26,6 +26,8 @@
 #main-content {
     width: 100%;
     padding: 20px 25px;
+    display: grid;
+    grid-auto-rows: min-content min-content fit-content(70%) min-content;
 }
 
 .main__title {
@@ -50,13 +52,6 @@
         z-index: 3;
         position: fixed;
     }
-}
-
-
-.main__tasks {
-    overflow-y: auto;
-    max-height: 400px;
-    width: 100%;
 }
 
 .main__description {

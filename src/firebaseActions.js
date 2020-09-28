@@ -12,9 +12,13 @@ export const fetchProjects = func => {
 }
 
 export const fetchTasks = func => {
-    COLLECTION.TASKS.where("isComplete", "!=", true).onSnapshot(
-        querySnapshot => func(querySnapshot.docs.map(doc => docToObject(doc)))
-    );
+
+    COLLECTION.TASKS
+        .where("isComplete", "==", false)
+        // .orderBy("isComplete", "asc")
+        // .orderBy("timestamp", "asc")
+        .onSnapshot(querySnapshot => func(querySnapshot.docs.map(doc => docToObject(doc)))
+        );
 }
 
 export const createProject = async ({name, description, color}) => {

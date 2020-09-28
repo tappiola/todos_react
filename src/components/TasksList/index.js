@@ -2,16 +2,17 @@ import {TasksList as PresentationalTasksList} from './TasksList';
 import {connect} from 'react-redux';
 import * as actionCreators from "../../store/actions/actionCreators";
 
-const tasksSelector = (tasks, projectId) => {
+const tasksSelector = (tasks, projects, projectId) => {
     if (projectId === 'inbox') {
-        return tasks.filter(task => !task.projectId);
+        tasks = tasks.filter(task => !task.projectId);
     } else if (projectId === 'focus') {
-        return tasks.filter(task => task.isFocusedOn === true);
+        tasks = tasks
+            .filter(task => task.isFocusedOn === true)
+            .map(t => ({...t, assignedProject: projects.find(p => p.id === t.projectId)}));
     } else if (projectId) {
-        return tasks.filter(task => task.projectId === projectId);
-    } else {
-        return tasks;
+        tasks = tasks.filter(task => task.projectId === projectId);
     }
+    return tasks.sort((a, b) => a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0);
 };
 
 const projectSelector = (projects, projectId) => {
@@ -27,7 +28,7 @@ const projectSelector = (projects, projectId) => {
 const mapStateToProps = ({tasks, projects, isProjectsFetching}, {projectId}) => (
     {
         isProjectsFetching,
-        tasks: tasksSelector(tasks, projectId),
+        tasks: tasksSelector(tasks, projects, projectId),
         project: projectSelector(projects, projectId)
     }
 

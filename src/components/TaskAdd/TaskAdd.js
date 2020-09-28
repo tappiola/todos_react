@@ -18,23 +18,25 @@ export const TaskAdd = ({project, onTaskAdd}) => {
                 value={taskName}
                 onChange={e => setTaskName(e.target.value)}
             />
-            <button
-                disabled={!taskName}
-                onClick={() => {
-                    onTaskAdd({projectId: project.id, name: taskName});
-                    setTaskName('');
-                    setIsInputActive(false);
-                }}
-            >Add task
-            </button>
-            <button
-                className="cancel-button"
-                onClick={() => {
-                    setIsInputActive(false);
-                    setTaskName('');
-                }}
-            >Cancel
-            </button>
+            <div>
+                <button
+                    disabled={!taskName}
+                    onClick={() => {
+                        onTaskAdd({projectId: project.id, name: taskName});
+                        setTaskName('');
+                        setIsInputActive(false);
+                    }}
+                >Add task
+                </button>
+                <button
+                    className="cancel-button"
+                    onClick={() => {
+                        setIsInputActive(false);
+                        setTaskName('');
+                    }}
+                >Cancel
+                </button>
+            </div>
         </>
     } else {
         return <div
