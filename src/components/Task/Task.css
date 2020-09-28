@@ -13,9 +13,9 @@
 
 .project-label {
     margin-right: 10px;
-    padding: 5px;
+    padding: 4px 10px;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 15px;
     font-size: 12px;
     text-transform: lowercase;
     font-weight: bold;

@@ -42,7 +42,7 @@ export const Task = ({task, project, onTaskEdit, onTaskDelete}) => {
                     }}
                 />
             </>}
-            {project.id === 'focus' && <div
+            {(project.id === 'focus' && task.assignedProject) && <div
                 className="project-label"
                 style={{backgroundColor: COLORS[task.assignedProject.color] || DEFAULT_COLOR.colorCode}}
             >{task.assignedProject.name}</div>}
