@@ -63,3 +63,11 @@ export const addTaskFb = (taskData) => {
             .catch(errorData => dispatch(firebaseError(errorData)))
     };
 };
+
+export const editTaskFb = (id, taskData) => {
+    return dispatch => {
+        firebaseActions.editTask(id, taskData)
+            .then(() => alert('success'))
+            .catch(errorData => dispatch(firebaseError(errorData)))
+    };
+};

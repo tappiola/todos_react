@@ -12,7 +12,7 @@ export const fetchProjects = func => {
 }
 
 export const fetchTasks = func => {
-    COLLECTION.TASKS.onSnapshot(
+    COLLECTION.TASKS.where("isComplete", "!=", true).onSnapshot(
         querySnapshot => func(querySnapshot.docs.map(doc => docToObject(doc)))
     );
 }
@@ -26,12 +26,15 @@ export const editProject = async (id, {name, description, color}) => {
 }
 
 export const createTask = async ({projectId, name}) => {
-    debugger
     return await COLLECTION.TASKS.add({
         projectId,
         name,
         createdAt: +new Date(),
         isFocusedOn: false,
-        isDone: false
+        isComplete: false
     });
+}
+
+export const editTask = async (id, data) => {
+    return await COLLECTION.TASKS.doc(id).set({...data}, {merge: true});
 }

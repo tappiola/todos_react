@@ -47,8 +47,8 @@
 }
 
 .project-modal__description::placeholder,
-.project-modal__name::placeholder{
-  color: #aaaaaa;
+.project-modal__name::placeholder {
+    color: #aaaaaa;
 }
 
 .input-label {
