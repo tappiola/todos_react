@@ -3,11 +3,16 @@ import './Task.css';
 import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
 import {COLORS, DEFAULT_COLOR} from "../../constants";
 
-export const Task = ({task, project, onTaskEdit}) => {
+export const Task = ({task, project, onTaskEdit, onTaskDelete}) => {
     const [complete, setComplete] = useState(task.isComplete);
     const [focused, setFocused] = useState(task.isFocusedOn);
+    const [isHovered, setIsHovered] = useState(false);
 
-    return <div className="main__task">
+    return <div
+        className="main__task"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+    >
         <div>
             <Icon
                 iconType={complete ? ICON_TYPE.CHECHBOX_COMPLETE : ICON_TYPE.CHECHBOX_INCOMPLETE}
@@ -22,6 +27,21 @@ export const Task = ({task, project, onTaskEdit}) => {
             <span>{task.name}</span>
         </div>
         <div>
+            {isHovered && <>
+                <Icon
+                    iconType={ICON_TYPE.DELETE}
+                    color={ICON_COLOR.GREY}
+                    onClick={() => {
+                        onTaskDelete(task.id)
+                    }}
+                />
+                <Icon
+                    iconType={ICON_TYPE.EDIT}
+                    color={ICON_COLOR.GREY}
+                    onClick={() => {
+                    }}
+                />
+            </>}
             {project.id === 'focus' && <div
                 className="project-label"
                 style={{backgroundColor: COLORS[task.assignedProject.color] || DEFAULT_COLOR.colorCode}}
@@ -33,13 +53,6 @@ export const Task = ({task, project, onTaskEdit}) => {
                     const newStatus = !focused;
                     setFocused(newStatus);
                     onTaskEdit(task.id, {isFocusedOn: newStatus});
-                }}
-                classes={['expandable']}
-            />
-            <Icon
-                iconType={ICON_TYPE.DETAILS}
-                color={ICON_COLOR.GREY}
-                onClick={() => {
                 }}
                 classes={['expandable']}
             />

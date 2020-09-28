@@ -5,6 +5,7 @@ import * as actionCreators from "../../store/actions/actionCreators";
 const mapDispatchToProps = (dispatch) => {
     return {
         onTaskEdit: (id, taskData) => dispatch(actionCreators.editTaskFb(id, taskData)),
+        onTaskDelete: id => dispatch(actionCreators.deleteTaskFb(id)),
     }
 };
 

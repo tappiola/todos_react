@@ -42,3 +42,7 @@ export const createTask = async ({projectId, name}) => {
 export const editTask = async (id, data) => {
     return await COLLECTION.TASKS.doc(id).set({...data}, {merge: true});
 }
+
+export const deleteTask = async (id) => {
+    return await COLLECTION.TASKS.doc(id).delete();
+}

@@ -71,3 +71,11 @@ export const editTaskFb = (id, taskData) => {
             .catch(errorData => dispatch(firebaseError(errorData)))
     };
 };
+
+export const deleteTaskFb = id => {
+    return dispatch => {
+        firebaseActions.deleteTask(id)
+            .then(() => alert('success'))
+            .catch(errorData => dispatch(firebaseError(errorData)))
+    };
+};
