@@ -39,16 +39,15 @@ export const Task = (
                     classes={['task-checkbox']}
                 />
                 {isInputActive ? <>
-                    <input className="task-add__input" value={inputValue}
+                    <input className="task-edit__input" value={inputValue}
                            onChange={e => setInputValue(e.target.value)}/>
                     <select id="project-select"
                             defaultValue={projectId}
                             onChange={e => {
-                                debugger
                                 setProjectId(e.target.value)
                             }}>
                         <option value="not-selected">Not selected</option>
-                        {projects.map(p => <option value={p.id}>{p.name}</option>)}
+                        {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
                 </> : <span>{task.name}</span>}
             </div>

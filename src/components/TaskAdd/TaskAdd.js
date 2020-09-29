@@ -8,8 +8,6 @@ export const TaskAdd = ({project, onTaskAdd}) => {
     const [isInputActive, setIsInputActive] = useState(false);
     const [taskName, setTaskName] = useState('');
 
-    console.log(project)
-
     if (isInputActive) {
         return <>
             <input

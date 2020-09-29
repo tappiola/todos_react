@@ -27,3 +27,23 @@
     font-weight: bold;
     white-space: nowrap;
 }
+
+.task-edit__input {
+    margin: 20px 0;
+    width: 100%;
+    border-radius: 5px 0 0 5px;
+    background-color: #282828;
+    outline: none;
+    padding: 14px;
+    font-size: 16px;
+
+}
+
+#project-select {
+    border-radius: 0 5px 5px 0;
+    font-size: 16px;
+    background-color: #282828;
+    outline: none;
+    padding: 13.5px 10px;
+    border-left: none;
+}
