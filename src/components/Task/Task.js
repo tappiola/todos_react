@@ -38,7 +38,7 @@ export const Task = (
                     }}
                     classes={['task-checkbox']}
                 />
-                {isInputActive ? <>
+                {isInputActive ? <div className="task-edit__input-container">
                     <input className="task-edit__input" value={inputValue}
                            onChange={e => setInputValue(e.target.value)}/>
                     <select id="project-select"
@@ -49,7 +49,7 @@ export const Task = (
                         <option value="not-selected">Not selected</option>
                         {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
-                </> : <span>{task.name}</span>}
+                </div> : <span className="text">{task.name}</span>}
             </div>
             <div>
                 {!isInputActive && isHovered && <>
@@ -70,7 +70,7 @@ export const Task = (
                         }}
                     />
                 </>}
-                {(currentProject.id === 'focus' && taskProject) && <div
+                {(currentProject.id === 'focus' && taskProject && !isInputActive) && <div
                     className="project-label"
                     style={{backgroundColor: COLORS[taskProject.color] || DEFAULT_COLOR.colorCode}}
                 >{taskProject.name}</div>}

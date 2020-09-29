@@ -25,7 +25,7 @@
 
 #main-content {
     width: 100%;
-    padding: 20px 25px;
+    padding: 20px 15px;
     display: grid;
     grid-auto-rows: min-content min-content fit-content(70%) min-content;
 }
@@ -61,6 +61,12 @@
     border-radius: 10px;
     margin-bottom: 20px;
     color: rgba(0, 0, 0, 0.74);
+}
+
+@media (min-width: 450px) {
+    #main-content {
+        padding: 20px 25px;
+    }
 }
 
 @media (min-width: 768px) {
