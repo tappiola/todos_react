@@ -18,6 +18,7 @@
 .project-item div {
     display: flex;
     align-items: center;
+    white-space: nowrap;
 }
 
 .left-menu__category {

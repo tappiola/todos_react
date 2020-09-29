@@ -2,6 +2,8 @@ import {Task as PresentationalTask} from './Task';
 import {connect} from 'react-redux';
 import * as actionCreators from "../../store/actions/actionCreators";
 
+const mapStateToProps = ({projects}) => ({projects});
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onTaskEdit: (id, taskData) => dispatch(actionCreators.editTaskFb(id, taskData)),
@@ -9,4 +11,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(null, mapDispatchToProps)(PresentationalTask);
+export default connect(mapStateToProps, mapDispatchToProps)(PresentationalTask);

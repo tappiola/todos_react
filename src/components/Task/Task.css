@@ -1,14 +1,20 @@
-.main__task {
+.task__container {
     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
     padding: 20px 0;
+}
+
+.task__first-row {
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
-.main__task div {
+.task__first-row div {
     display: flex;
     align-items: center;
+}
+
+.task__first-row-text {
+    width: 100%;
 }
 
 .project-label {
@@ -19,4 +25,5 @@
     font-size: 12px;
     text-transform: lowercase;
     font-weight: bold;
+    white-space: nowrap;
 }

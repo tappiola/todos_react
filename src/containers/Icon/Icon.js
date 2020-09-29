@@ -3,8 +3,8 @@ import React from "react";
 import {COLORS} from "../../constants";
 
 export const ICON_TYPE = {
-    CHECHBOX_COMPLETE: 'fa-check-square',
-    CHECHBOX_INCOMPLETE: 'fa-square',
+    CHECKBOX_COMPLETE: 'fa-check-square',
+    CHECKBOX_INCOMPLETE: 'fa-square',
     STAR: 'fa-star',
     INBOX: 'fa-inbox',
     PROJECTS: 'fa-tasks',
