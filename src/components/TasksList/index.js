@@ -1,6 +1,6 @@
 import {TasksList as PresentationalTasksList} from './TasksList';
 import {connect} from 'react-redux';
-import * as actionCreators from "../../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/fb";
 
 const tasksSelector = (tasks, projects, projectId) => {
     if (projectId === 'inbox') {
@@ -25,7 +25,7 @@ const projectSelector = (projects, projectId) => {
     }
 }
 
-const mapStateToProps = ({tasks, projects, isProjectsFetching}, {projectId}) => (
+const mapStateToProps = ({firebase: {tasks, projects, isProjectsFetching}}, {projectId}) => (
     {
         isProjectsFetching,
         tasks: tasksSelector(tasks, projects, projectId),

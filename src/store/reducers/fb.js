@@ -8,7 +8,7 @@ const initialState = {
     successMessage: null
 };
 
-const reducer = (state = initialState, action) => {
+const firebaseReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.INIT_PROJECTS:
             console.log('fetch projects')
@@ -50,11 +50,9 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 successMessage: null
             }
-
-
         default:
             return state;
     }
 }
 
-export default reducer;
+export default firebaseReducer;

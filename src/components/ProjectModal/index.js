@@ -1,6 +1,6 @@
 import {ProjectModal as PresentationalProjectModal} from './ProjectModal';
 import {connect} from 'react-redux';
-import * as actionCreators from "../../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/fb";
 
 const mapDispatchToProps = (dispatch) => {
     return {

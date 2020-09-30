@@ -6,19 +6,15 @@ import TasksList from "./components/TasksList";
 import {Redirect, Route, Switch} from "react-router";
 import ErrorPopup from "./components/ErrorPopup";
 import SuccessPopup from "./components/SuccessPopup";
+import LoginForm from "./components/LoginForm";
+import {connect} from "react-redux";
 
-const App = () => {
+const App = ({userId, userLoadComplete}) => {
     const [menuOpen, setMenuOpen] = useState(false);
+    console.log(userLoadComplete, userId)
 
-    return <div id="container">
-        <SuccessPopup/>
-        <ErrorPopup/>
-        <div id="top-panel">
-            <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>
-            <div>Some option</div>
-            <div>Tappiola</div>
-        </div>
-        <div id="main">
+    const ProtectedContent = () => {
+        return <div id="main">
             <LeftMenu menuOpen={menuOpen} onMenuClose={() => setMenuOpen(false)}/>
             <Switch>
                 <Route exact path="/">
@@ -34,11 +30,32 @@ const App = () => {
                     {({match}) => <TasksList projectId={match.params.id}/>}
                 </Route>
                 <Route>
-                    <div className="message">Page not found</div>
+                    <div className="message">Project not found</div>
                 </Route>
             </Switch>
         </div>
+    }
+
+    return <div id="container">
+        <SuccessPopup/>
+        <ErrorPopup/>
+        <div id="top-panel">
+            {userId && <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>}
+            <div>Some option</div>
+            <div>Tappiola</div>
+        </div>
+        <Switch>
+            <Route exact path="/login">
+                {userLoadComplete && !userId && <LoginForm/>}
+            </Route>
+            {userId && <Route>
+                <ProtectedContent/>
+            </Route>}
+        </Switch>
+        {userLoadComplete && !userId ? <Redirect to="/login"/> : <Redirect to='/inbox'/>}
     </div>
 }
 
-export default App;
+const mapStateToProps = ({auth: {userId, userLoadComplete}}) => ({userId, userLoadComplete});
+
+export default connect(mapStateToProps)(App);

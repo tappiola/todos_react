@@ -5,14 +5,23 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import reducer from "./store/reducers/reducer";
-import {applyMiddleware, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from 'redux-devtools-extension';
+import authReducer from './store/reducers/auth';
+import firebaseReducer from './store/reducers/fb';
+import * as authActionCreators from './store/actions/auth';
 
-const store = createStore(reducer, composeWithDevTools(
+const rootReducer = combineReducers({
+    firebase: firebaseReducer,
+    auth: authReducer
+});
+
+const store = createStore(rootReducer, composeWithDevTools(
     applyMiddleware(thunk)
 ));
+
+store.dispatch(authActionCreators.initUser());
 
 ReactDOM.render(
     <React.StrictMode>

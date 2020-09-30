@@ -32,12 +32,12 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
                 onColorChange={color => setColor(color)}
             />
             <div className="button-container">
-                <button className="delete-button" onClick={() => {
+                {project && <button className="delete-button" onClick={() => {
                     onProjectDelete(project.id);
                     onModalClose();
                     history.push('/inbox');
                 }}>Delete
-                </button>
+                </button>}
                 <button className="cancel-button" onClick={onModalClose}>Cancel</button>
                 <button
                     onClick={() => {

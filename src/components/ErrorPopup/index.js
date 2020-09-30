@@ -1,8 +1,8 @@
 import {ErrorPopup as ErrorPopupPresentational} from "./ErrorPopup";
-import * as actionCreators from "../../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/fb";
 import {connect} from "react-redux";
 
-const mapStateToProps = ({error}) => ({error});
+const mapStateToProps = ({firebase: {error}}) => ({error});
 
 const mapDispatchToProps = (dispatch) => {
     return {

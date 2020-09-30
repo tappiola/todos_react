@@ -1,8 +1,8 @@
 import {Task as PresentationalTask} from './Task';
 import {connect} from 'react-redux';
-import * as actionCreators from "../../store/actions/actionCreators";
+import * as actionCreators from "../../store/actions/fb";
 
-const mapStateToProps = ({projects}) => ({projects});
+const mapStateToProps = ({firebase: {projects}}) => ({projects});
 
 const mapDispatchToProps = (dispatch) => {
     return {
