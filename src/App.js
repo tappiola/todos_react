@@ -52,7 +52,10 @@ const App = ({userId, userLoadComplete}) => {
                 <ProtectedContent/>
             </Route>}
         </Switch>
-        {userLoadComplete && !userId ? <Redirect to="/login"/> : <Redirect to='/inbox'/>}
+        {userLoadComplete && !userId ? <Redirect to="/login"/> :
+            <Route exact path="/login">
+            <Redirect to='/inbox'/>
+            </Route>}
     </div>
 }
 
