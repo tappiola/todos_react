@@ -3,7 +3,9 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     isProjectsFetching: true,
     projects: [],
-    tasks: []
+    tasks: [],
+    error: null,
+    successMessage: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,12 +23,33 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 tasks: action.payload.tasks
             };
-        case actionTypes.FIREBASE_ERROR:
-            alert("Firebase error: " + JSON.stringify(action.payload.error));
+        case actionTypes.ERROR:
             return {
                 ...state,
                 error: action.payload.error
             };
+        case actionTypes.SUCCESS:
+            return {
+                ...state,
+                successMessage: action.payload.message
+            };
+        case actionTypes.SUCCESS_DISAPPEAR:
+            return {
+                ...state,
+                successMessage: null
+            }
+        case actionTypes.ERROR_DISMISS:
+
+            return {
+                ...state,
+                error: null
+            }
+        case actionTypes.SUCCESS_DISMISS:
+
+            return {
+                ...state,
+                successMessage: null
+            }
 
 
         default:

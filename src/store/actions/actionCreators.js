@@ -29,64 +29,81 @@ export const initTasks = () => {
 
 export const firebaseSuccess = (message) => {
     return {
-        type: actionTypes.FIREBASE_ERROR,
+        type: actionTypes.SUCCESS,
         payload: {message}
+    };
+}
+
+export const successDisappear = () => {
+    return {
+        type: actionTypes.SUCCESS_DISAPPEAR
     };
 }
 
 export const firebaseError = (error) => {
     return {
-        type: actionTypes.FIREBASE_ERROR,
-        payload: {error}
+        type: actionTypes.ERROR,
+        payload: {error: {type: "Firebase error", message: error}}
+    };
+}
+
+export const errorDismiss = () => ({type: actionTypes.ERROR_DISMISS})
+export const successDismiss = () => ({type: actionTypes.SUCCESS_DISMISS})
+
+const firebaseDispatch = (action, message) => {
+    return dispatch => {
+        action
+            .then(() => {
+                dispatch(firebaseSuccess(message));
+                setTimeout(() => {
+                    dispatch(successDisappear())
+                }, 1200)
+            })
+            .catch(errorData => dispatch(firebaseError(errorData)))
     };
 }
 
 export const addProjectFb = (projectData) => {
-    return dispatch => {
-        firebaseActions.createProject(projectData)
-            .then(() => alert('success'))
-            .catch(errorData => dispatch(firebaseError(errorData)))
-    };
+    return firebaseDispatch(
+        firebaseActions.createProject(projectData),
+        "Project has been created"
+    )
 };
 
 export const editProjectFb = (id, projectData) => {
-    return dispatch => {
-        firebaseActions.editProject(id, projectData)
-            .then(() => alert('success'))
-            .catch(errorData => dispatch(firebaseError(errorData)))
-    };
+    return firebaseDispatch(
+        firebaseActions.editProject(id, projectData),
+        "Changes saved successfully"
+    )
 };
 
 export const deleteProjectFb = id => {
-    return dispatch => {
+    return firebaseDispatch(
         Promise.all([
             firebaseActions.deleteProject(id),
             firebaseActions.deleteTasksByProjectId(id)
-        ])
-            .then(() => alert('success'))
-            .catch(errorData => dispatch(firebaseError(errorData)))
-    };
+        ]), "Project has been deleted"
+    )
 }
 
 export const addTaskFb = (taskData) => {
     return dispatch => {
         firebaseActions.createTask(taskData)
+            .then(() => dispatch(firebaseSuccess("Task has been added")))
             .catch(errorData => dispatch(firebaseError(errorData)))
     };
 };
 
 export const editTaskFb = (id, taskData) => {
-    return dispatch => {
-        firebaseActions.editTask(id, taskData)
-            .then(() => alert('success'))
-            .catch(errorData => dispatch(firebaseError(errorData)))
-    };
+    return firebaseDispatch(
+        firebaseActions.editTask(id, taskData),
+        "Changes saved successfully"
+    )
 };
 
 export const deleteTaskFb = id => {
-    return dispatch => {
-        firebaseActions.deleteTask(id)
-            .then(() => alert('success'))
-            .catch(errorData => dispatch(firebaseError(errorData)))
-    };
+    return firebaseDispatch(
+        firebaseActions.deleteTask(id),
+        "Task has been deleted"
+    )
 };

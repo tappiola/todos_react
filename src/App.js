@@ -4,11 +4,15 @@ import {HamburgerButton} from "./containers/HamburgerButton/HamburgerButton";
 import LeftMenu from "./components/LeftMenu";
 import TasksList from "./components/TasksList";
 import {Redirect, Route, Switch} from "react-router";
+import ErrorPopup from "./components/ErrorPopup";
+import SuccessPopup from "./components/ErrorPopup";
 
 const App = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return <div id="container">
+        <SuccessPopup/>
+        <ErrorPopup/>
         <div id="top-panel">
             <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>
             <div>Some option</div>
