@@ -9,7 +9,11 @@ export const TaskAdd = ({project, onTaskAdd}) => {
     const [taskName, setTaskName] = useState('');
 
     if (isInputActive) {
-        return <>
+        return <form onSubmit={() => {
+            onTaskAdd({projectId: project.id, name: taskName});
+            setTaskName('');
+            setIsInputActive(false);
+        }}>
             <input
                 className="task-add__input"
                 maxLength="100"
@@ -17,13 +21,8 @@ export const TaskAdd = ({project, onTaskAdd}) => {
                 onChange={e => setTaskName(e.target.value)}
             />
             <div>
-                <button
-                    disabled={!taskName}
-                    onClick={() => {
-                        onTaskAdd({projectId: project.id, name: taskName});
-                        setTaskName('');
-                        setIsInputActive(false);
-                    }}
+                <button type="submit"
+                        disabled={!taskName}
                 >Add task
                 </button>
                 <button
@@ -35,7 +34,7 @@ export const TaskAdd = ({project, onTaskAdd}) => {
                 >Cancel
                 </button>
             </div>
-        </>
+        </form>
     } else {
         return <div
             className="task-add__button"

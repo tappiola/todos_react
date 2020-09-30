@@ -29,7 +29,9 @@ const App = () => {
                 <Route exact path="/projects/:id">
                     {({match}) => <TasksList projectId={match.params.id}/>}
                 </Route>
-                <Route>Not found</Route>
+                <Route>
+                    <div className="message">Page not found</div>
+                </Route>
             </Switch>
         </div>
     </div>

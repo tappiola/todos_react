@@ -15,8 +15,6 @@ export const fetchTasks = func => {
 
     COLLECTION.TASKS
         .where("isComplete", "==", false)
-        // .orderBy("isComplete", "asc")
-        // .orderBy("timestamp", "asc")
         .onSnapshot(querySnapshot => func(querySnapshot.docs.map(doc => docToObject(doc)))
         );
 }
@@ -45,4 +43,15 @@ export const editTask = async (id, data) => {
 
 export const deleteTask = async (id) => {
     return await COLLECTION.TASKS.doc(id).delete();
+}
+
+export const deleteTasksByProjectId = async (id) => {
+    const docs = await COLLECTION.TASKS.where("projectId", "==", id).get();
+    return docs.forEach(element => {
+        element.ref.delete();
+    });
+}
+
+export const deleteProject = async (id) => {
+    return await COLLECTION.PROJECTS.doc(id).delete();
 }

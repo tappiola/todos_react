@@ -57,6 +57,17 @@ export const editProjectFb = (id, projectData) => {
     };
 };
 
+export const deleteProjectFb = id => {
+    return dispatch => {
+        Promise.all([
+            firebaseActions.deleteProject(id),
+            firebaseActions.deleteTasksByProjectId(id)
+        ])
+            .then(() => alert('success'))
+            .catch(errorData => dispatch(firebaseError(errorData)))
+    };
+}
+
 export const addTaskFb = (taskData) => {
     return dispatch => {
         firebaseActions.createTask(taskData)

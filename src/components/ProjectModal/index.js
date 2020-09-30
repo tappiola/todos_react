@@ -6,6 +6,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onProjectAdd: (projectData) => dispatch(actionCreators.addProjectFb(projectData)),
         onProjectEdit: (id, projectData) => dispatch(actionCreators.editProjectFb(id, projectData)),
+        onProjectDelete: (id) => dispatch(actionCreators.deleteProjectFb(id)),
     }
 };
 

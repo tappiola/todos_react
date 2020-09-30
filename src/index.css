@@ -62,6 +62,10 @@ button.cancel-button {
     background-color: #353242;
 }
 
+button.delete-button {
+    background-color: #5f1e1e;
+}
+
 button:disabled {
     background-color: gray;
 }

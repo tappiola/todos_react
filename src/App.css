@@ -63,6 +63,13 @@
     color: rgba(0, 0, 0, 0.74);
 }
 
+.message {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (min-width: 450px) {
     #main-content {
         padding: 20px 25px;

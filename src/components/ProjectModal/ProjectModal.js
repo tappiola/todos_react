@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants";
 import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 
-export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit}) => {
+export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete}) => {
     const [name, setName] = useState(project?.name || '');
     const [description, setDescription] = useState(project?.description || '');
     const [color, setColor] = useState(project?.color ? getColorObject(project.color) : DEFAULT_COLOR);
@@ -30,6 +30,7 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
                 onColorChange={color => setColor(color)}
             />
             <div className="button-container">
+                <button className="delete-button" onClick={() => onProjectDelete(project.id)}>Delete</button>
                 <button className="cancel-button" onClick={onModalClose}>Cancel</button>
                 <button
                     onClick={() => {

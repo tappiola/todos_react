@@ -13,6 +13,9 @@ export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
     if (isProjectsFetching) {
         return null;
     }
+    if (!project) {
+        return <div className="message">Project doesn't exist</div>
+    }
 
     return <div id="main-content">
         <div className="main__title">{project.name}</div>
