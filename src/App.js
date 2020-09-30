@@ -5,7 +5,7 @@ import LeftMenu from "./components/LeftMenu";
 import TasksList from "./components/TasksList";
 import {Redirect, Route, Switch} from "react-router";
 import ErrorPopup from "./components/ErrorPopup";
-import SuccessPopup from "./components/ErrorPopup";
+import SuccessPopup from "./components/SuccessPopup";
 
 const App = () => {
     const [menuOpen, setMenuOpen] = useState(false);

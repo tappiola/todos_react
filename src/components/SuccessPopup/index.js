@@ -1,4 +1,4 @@
-import {ErrorPopup as ErrorPopupPresentational} from "./ErrorPopup";
+import {SuccessPopup as SuccessPopupPresentational} from "./SuccessPopup";
 import * as actionCreators from "../../store/actions/actionCreators";
 import {connect} from "react-redux";
 
@@ -6,8 +6,8 @@ const mapStateToProps = ({successMessage}) => ({successMessage});
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onErrorDismiss: () => dispatch(actionCreators.errorDismiss())
+        onSuccessDismiss: () => dispatch(actionCreators.successDismiss())
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorPopupPresentational);
+export default connect(mapStateToProps, mapDispatchToProps)(SuccessPopupPresentational);
