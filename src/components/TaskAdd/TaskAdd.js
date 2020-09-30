@@ -19,6 +19,7 @@ export const TaskAdd = ({project, onTaskAdd}) => {
                 maxLength="100"
                 value={taskName}
                 onChange={e => setTaskName(e.target.value)}
+                ref={input => input && input.focus()}
             />
             <div>
                 <button type="submit"

@@ -39,8 +39,11 @@ export const Task = (
                     classes={['task-checkbox']}
                 />
                 {isInputActive ? <div className="task-edit__input-container">
-                    <input className="task-edit__input" value={inputValue}
-                           onChange={e => setInputValue(e.target.value)}/>
+                    <input className="task-edit__input"
+                           value={inputValue}
+                           onChange={e => setInputValue(e.target.value)}
+                           ref={input => input && input.focus()}
+                    />
                     <select id="project-select"
                             defaultValue={projectId}
                             onChange={e => {
