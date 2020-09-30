@@ -7,7 +7,7 @@ export const SuccessPopup = ({successMessage, onSuccessDismiss}) => {
         return null
     }
 
-    return <div className='error-popup'>
+    return <div className='success-popup'>
         <MediumIcon
             iconType={ICON_TYPE.CLOSE}
             color={ICON_COLOR.WHITE}

@@ -43,7 +43,7 @@ export const successDisappear = () => {
 export const firebaseError = (error) => {
     return {
         type: actionTypes.ERROR,
-        payload: {error: {type: "Firebase error", message: error}}
+        payload: {error: {type: "Firebase error", message: error.message}}
     };
 }
 
@@ -52,7 +52,7 @@ export const successDismiss = () => ({type: actionTypes.SUCCESS_DISMISS})
 
 const firebaseDispatch = (action, message) => {
     return dispatch => {
-        action
+        action()
             .then(() => {
                 dispatch(firebaseSuccess(message));
                 setTimeout(() => {
@@ -65,21 +65,21 @@ const firebaseDispatch = (action, message) => {
 
 export const addProjectFb = (projectData) => {
     return firebaseDispatch(
-        firebaseActions.createProject(projectData),
+        () => firebaseActions.createProject(projectData),
         "Project has been created"
     )
 };
 
 export const editProjectFb = (id, projectData) => {
     return firebaseDispatch(
-        firebaseActions.editProject(id, projectData),
+        () => firebaseActions.editProject(id, projectData),
         "Changes saved successfully"
     )
 };
 
 export const deleteProjectFb = id => {
     return firebaseDispatch(
-        Promise.all([
+        () => Promise.all([
             firebaseActions.deleteProject(id),
             firebaseActions.deleteTasksByProjectId(id)
         ]), "Project has been deleted"
@@ -87,23 +87,21 @@ export const deleteProjectFb = id => {
 }
 
 export const addTaskFb = (taskData) => {
-    return dispatch => {
-        firebaseActions.createTask(taskData)
-            .then(() => dispatch(firebaseSuccess("Task has been added")))
-            .catch(errorData => dispatch(firebaseError(errorData)))
-    };
+    return firebaseDispatch(
+        () => firebaseActions.createTask(taskData),
+        "Task has been added")
 };
 
 export const editTaskFb = (id, taskData) => {
     return firebaseDispatch(
-        firebaseActions.editTask(id, taskData),
+        () => firebaseActions.editTask(id, taskData),
         "Changes saved successfully"
     )
 };
 
 export const deleteTaskFb = id => {
     return firebaseDispatch(
-        firebaseActions.deleteTask(id),
+        () => firebaseActions.deleteTask(id),
         "Task has been deleted"
     )
 };

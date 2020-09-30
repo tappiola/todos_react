@@ -4,14 +4,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 11;
-    height: 200px;
     width: 400px;
     border: 1px solid transparent;
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
-    background-color: #181818;
+    background-color: #424242;
     border-radius: 10px;
+}
+
+@media (max-width: 400px) {
+    .error-popup {
+        width: 350px;
+    }
 }
 
 .top-right {

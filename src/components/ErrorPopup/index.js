@@ -2,7 +2,7 @@ import {ErrorPopup as ErrorPopupPresentational} from "./ErrorPopup";
 import * as actionCreators from "../../store/actions/actionCreators";
 import {connect} from "react-redux";
 
-const mapStateToProps = ({successMessage}) => ({successMessage});
+const mapStateToProps = ({error}) => ({error});
 
 const mapDispatchToProps = (dispatch) => {
     return {
