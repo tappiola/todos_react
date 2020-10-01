@@ -23,7 +23,7 @@ const firebaseReducer = (state = initialState, action) => {
                 ...state,
                 tasks: action.payload.tasks
             };
-        case actionTypes.ERROR:
+        case actionTypes.FB_ERROR:
             return {
                 ...state,
                 error: action.payload.error
@@ -38,7 +38,7 @@ const firebaseReducer = (state = initialState, action) => {
                 ...state,
                 successMessage: null
             }
-        case actionTypes.ERROR_DISMISS:
+        case actionTypes.FB_ERROR_DISMISS:
 
             return {
                 ...state,

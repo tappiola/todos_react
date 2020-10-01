@@ -42,12 +42,12 @@ export const successDisappear = () => {
 
 export const firebaseError = (error) => {
     return {
-        type: actionTypes.ERROR,
+        type: actionTypes.FB_ERROR,
         payload: {error: {type: "Firebase error", message: error.message}}
     };
 }
 
-export const errorDismiss = () => ({type: actionTypes.ERROR_DISMISS})
+export const errorDismiss = () => ({type: actionTypes.FB_ERROR_DISMISS})
 export const successDismiss = () => ({type: actionTypes.SUCCESS_DISMISS})
 
 const firebaseDispatch = (action, message) => {

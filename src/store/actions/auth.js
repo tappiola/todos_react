@@ -3,7 +3,7 @@ import * as authActions from "../../authActions";
 
 export const setUser = user => {
     return {
-        type: actionTypes.INIT_USER,
+        type: actionTypes.SET_USER,
         payload: {user}
     };
 };
@@ -15,17 +15,32 @@ export const initUser = () => {
 };
 
 export const authError = error => {
-    console.log('ERROR', error.message);
     return {
         type: actionTypes.AUTH_ERROR,
         payload: {error: error.message}
     };
 };
 
+export const errorDismiss = () => ({type: actionTypes.AUTH_ERROR_DISMISS})
+
 
 export const login = (email, password) => {
     return dispatch => {
         authActions.login(email, password)
+            .catch(errorData => dispatch(authError(errorData)))
+    };
+}
+
+export const register = (email, password) => {
+    return dispatch => {
+        authActions.register(email, password)
+            .catch(errorData => dispatch(authError(errorData)))
+    };
+}
+
+export const logout = () => {
+    return dispatch => {
+        authActions.logout()
             .catch(errorData => dispatch(authError(errorData)))
     };
 }

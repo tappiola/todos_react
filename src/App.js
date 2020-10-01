@@ -8,25 +8,27 @@ import ErrorPopup from "./components/ErrorPopup";
 import SuccessPopup from "./components/SuccessPopup";
 import LoginForm from "./components/LoginForm";
 import {connect} from "react-redux";
+import {NavLink} from "react-router-dom";
+import * as actionCreators from "./store/actions/auth";
+import {URLS} from "./urls";
 
-const App = ({userId, userLoadComplete}) => {
+const App = ({userId, email, userLoadComplete, onLogout}) => {
     const [menuOpen, setMenuOpen] = useState(false);
-    console.log(userLoadComplete, userId)
 
     const ProtectedContent = () => {
         return <div id="main">
             <LeftMenu menuOpen={menuOpen} onMenuClose={() => setMenuOpen(false)}/>
             <Switch>
                 <Route exact path="/">
-                    <Redirect to="/inbox"/>
+                    <Redirect to={URLS.INBOX}/>
                 </Route>
-                <Route exact path="/inbox">
+                <Route exact path={URLS.INBOX}>
                     <TasksList projectId="inbox"/>
                 </Route>
-                <Route exact path="/focus">
+                <Route exact path={URLS.FOCUS}>
                     <TasksList projectId="focus"/>
                 </Route>
-                <Route exact path="/projects/:id">
+                <Route exact path={`${URLS.PROJECTS}/:id`}>
                     {({match}) => <TasksList projectId={match.params.id}/>}
                 </Route>
                 <Route>
@@ -36,29 +38,46 @@ const App = ({userId, userLoadComplete}) => {
         </div>
     }
 
+    if (!userLoadComplete) {
+        return null
+    }
+
     return <div id="container">
         <SuccessPopup/>
         <ErrorPopup/>
         <div id="top-panel">
             {userId && <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>}
             <div>Some option</div>
-            <div>Tappiola</div>
+            {userId
+                ? <div>Logged in as {email} <span className="auth-link" onClick={onLogout}>Logout</span></div>
+                : <NavLink to={URLS.LOGIN}><span className="auth-link">Login</span></NavLink>}
         </div>
         <Switch>
-            <Route exact path="/login">
-                {userLoadComplete && !userId && <LoginForm/>}
+            <Route exact path={URLS.LOGIN}>
+                {!userId && <LoginForm/>}
             </Route>
-            {userId && <Route>
+            <Route exact path={URLS.REGISTER}>
+                {!userId && <LoginForm/>}
+            </Route>
+            {userId && <Route>onLogout
                 <ProtectedContent/>
             </Route>}
         </Switch>
-        {userLoadComplete && !userId ? <Redirect to="/login"/> :
-            <Route exact path="/login">
-            <Redirect to='/inbox'/>
-            </Route>}
+        {!userId ? <Redirect to={URLS.LOGIN}/> :
+            <>
+                <Route exact path={URLS.LOGIN}><Redirect to={URLS.INBOX}/></Route>
+                <Route exact path={URLS.REGISTER}><Redirect to={URLS.INBOX}/></Route>
+            </>
+        }
     </div>
 }
 
-const mapStateToProps = ({auth: {userId, userLoadComplete}}) => ({userId, userLoadComplete});
+const mapStateToProps = ({auth: {userId, email, userLoadComplete}}) => ({userId, email, userLoadComplete});
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLogout: () => dispatch(actionCreators.logout()),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

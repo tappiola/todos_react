@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants";
 import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 import {useHistory} from "react-router";
+import {URLS} from "../../urls";
 
 export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete}) => {
     const [name, setName] = useState(project?.name || '');
@@ -35,7 +36,7 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
                 {project && <button className="delete-button" onClick={() => {
                     onProjectDelete(project.id);
                     onModalClose();
-                    history.push('/inbox');
+                    history.push(URLS.INBOX);
                 }}>Delete
                 </button>}
                 <button className="cancel-button" onClick={onModalClose}>Cancel</button>
