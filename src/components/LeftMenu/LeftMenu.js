@@ -3,15 +3,15 @@ import './LeftMenu.css';
 import ProjectsList from "../ProjectsList";
 import ProjectModal from "../ProjectModal";
 
-export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose}) => {
+export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose, userId}) => {
 
     const [showAddProjectModal, setShowAddProjectModal] = useState(false);
     const [showEditProjectModal, setShowEditProjectModal] = useState(false);
     const [editedProject, setEditedProject] = useState({});
 
     useEffect(() => {
-        onLoad();
-    }, [onLoad])
+        onLoad(userId);
+    }, [onLoad, userId]);
 
     return <>
         {showAddProjectModal && <ProjectModal onModalClose={() => setShowAddProjectModal(false)}/>}

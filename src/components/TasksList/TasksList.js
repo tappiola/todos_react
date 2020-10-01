@@ -3,12 +3,12 @@ import React, {useEffect, useState} from "react";
 import './TasksList.css';
 import TaskAdd from "../TaskAdd";
 
-export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
+export const TasksList = ({project, tasks, onLoad, isProjectsFetching, userId}) => {
     const [activeTaskId, setActiveTaskId] = useState(null);
 
     useEffect(() => {
-        onLoad();
-    }, [onLoad])
+        onLoad(userId);
+    }, [onLoad, userId]);
 
     if (isProjectsFetching) {
         return null;

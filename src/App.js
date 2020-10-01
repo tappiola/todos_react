@@ -8,7 +8,6 @@ import ErrorPopup from "./components/ErrorPopup";
 import SuccessPopup from "./components/SuccessPopup";
 import LoginForm from "./components/LoginForm";
 import {connect} from "react-redux";
-import {NavLink} from "react-router-dom";
 import * as actionCreators from "./store/actions/auth";
 import {URLS} from "./urls";
 
@@ -47,10 +46,7 @@ const App = ({userId, email, userLoadComplete, onLogout}) => {
         <ErrorPopup/>
         <div id="top-panel">
             {userId && <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>}
-            <div></div>
-            {userId
-                ? <div>Logged in as {email} <span className="auth-link" onClick={onLogout}>Logout</span></div>
-                : <NavLink to={URLS.LOGIN}><span className="auth-link">Login</span></NavLink>}
+            {userId && <div>Logged in as {email} <span className="auth-link" onClick={onLogout}>Logout</span></div>}
         </div>
         <Switch>
             <Route exact path={URLS.LOGIN}>

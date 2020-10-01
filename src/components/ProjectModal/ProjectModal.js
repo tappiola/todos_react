@@ -5,7 +5,7 @@ import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 import {useHistory} from "react-router";
 import {URLS} from "../../urls";
 
-export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete}) => {
+export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete, userId}) => {
     const [name, setName] = useState(project?.name || '');
     const [description, setDescription] = useState(project?.description || '');
     const [color, setColor] = useState(project?.color ? getColorObject(project.color) : DEFAULT_COLOR);
@@ -34,7 +34,7 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
             />
             <div className="button-container">
                 {project && <button className="delete-button" onClick={() => {
-                    onProjectDelete(project.id);
+                    onProjectDelete(project.id, userId);
                     onModalClose();
                     history.push(URLS.INBOX);
                 }}>Delete
@@ -43,8 +43,8 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
                 <button
                     onClick={() => {
                         project ?
-                            onProjectEdit(project.id, {name, description, color: color.humanColor})
-                            : onProjectAdd({name, description, color: color.humanColor});
+                            onProjectEdit(project.id, {name, description, color: color.humanColor}, userId)
+                            : onProjectAdd({name, description, color: color.humanColor}, userId);
                         onModalClose();
                     }}
                     disabled={!name}

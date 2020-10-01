@@ -2,10 +2,12 @@ import {TaskAdd as PresentationalTaskAdd} from './TaskAdd';
 import {connect} from 'react-redux';
 import * as actionCreators from "../../store/actions/fb";
 
+const mapStateToProps = ({auth: {userId}}) => ({userId});
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        onTaskAdd: taskData => dispatch(actionCreators.addTaskFb(taskData)),
+        onTaskAdd: (taskData, userId) => dispatch(actionCreators.addTaskFb(taskData, userId)),
     }
 };
 
-export default connect(null, mapDispatchToProps)(PresentationalTaskAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(PresentationalTaskAdd);

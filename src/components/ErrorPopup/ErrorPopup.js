@@ -15,5 +15,5 @@ export const ErrorPopup = ({error, onErrorDismiss}) => {
             onClick={onErrorDismiss}
         />
         <h4>{error.type}</h4>
-        {JSON.stringify(error.message)}</div>
+        {error.message}</div>
 }

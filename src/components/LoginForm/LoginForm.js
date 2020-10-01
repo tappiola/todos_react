@@ -27,7 +27,9 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
                 setAuthMode(mode);
                 setEmail('');
                 setPassword('');
-                onErrorDismiss();
+                if (error) {
+                    onErrorDismiss();
+                }
                 history.push(mode === AUTH_MODE.LOGIN ? URLS.LOGIN : URLS.REGISTER);
             }}
         >{mode}</div>
@@ -36,7 +38,9 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
     return <div className="login-container">
         <form className="login-form" onSubmit={(e) => {
             e.preventDefault();
-            onErrorDismiss();
+            if (error) {
+                onErrorDismiss();
+            }
             authMode === AUTH_MODE.LOGIN ? onLogin(email, password) : onRegister(email, password);
         }}>
             <div className="auth-selector">

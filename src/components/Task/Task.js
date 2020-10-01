@@ -4,7 +4,7 @@ import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
 import {COLORS, DEFAULT_COLOR} from "../../constants";
 
 export const Task = (
-    {task, currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}
+    {task, currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask, userId}
 ) => {
     const [complete, setComplete] = useState(task.isComplete);
     const [focused, setFocused] = useState(task.isFocusedOn);
@@ -60,7 +60,7 @@ export const Task = (
                         iconType={ICON_TYPE.DELETE}
                         color={ICON_COLOR.GREY}
                         onClick={() => {
-                            onTaskDelete(id)
+                            onTaskDelete(id, userId)
                         }}
                     />
                     <Icon
@@ -83,7 +83,7 @@ export const Task = (
                     onClick={() => {
                         const newStatus = !focused;
                         setFocused(newStatus);
-                        onTaskEdit(id, {isFocusedOn: newStatus});
+                        onTaskEdit(id, {isFocusedOn: newStatus}, userId);
                     }}
                     classes={['expandable']}
                 />
@@ -93,7 +93,10 @@ export const Task = (
             <button
                 disabled={!inputValue}
                 onClick={() => {
-                    onTaskEdit(id, {name: inputValue, projectId: projectId === 'not-selected' ? null : projectId});
+                    onTaskEdit(id, {
+                        name: inputValue,
+                        projectId: projectId === 'not-selected' ? null : projectId
+                    }, userId);
                     setIsInputActive(false);
                 }}>Save
             </button>
