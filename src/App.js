@@ -46,6 +46,7 @@ const App = ({userId, email, userLoadComplete, onLogout}) => {
         <ErrorPopup/>
         <div id="top-panel">
             {userId && <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>}
+            <div></div>
             {userId && <div>Logged in as {email} <span className="auth-link" onClick={onLogout}>Logout</span></div>}
         </div>
         <Switch>
