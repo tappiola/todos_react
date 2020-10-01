@@ -47,7 +47,7 @@ const App = ({userId, email, userLoadComplete, onLogout}) => {
         <div id="top-panel">
             {userId && <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>}
             <div></div>
-            {userId && <div className="user-message">Logged in as {email.split('@')[0]} <span className="auth-link" onClick={onLogout}>Logout</span></div>}
+            {userId && <div className="user-message"><span>Logged in as {email}</span><span className="auth-link" onClick={onLogout}>Logout</span></div>}
         </div>
         <Switch>
             <Route exact path={URLS.LOGIN}>
