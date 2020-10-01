@@ -73,6 +73,7 @@
 .auth-link {
     text-decoration: underline;
     padding-left: 20px;
+    color: hsla(0, 0%, 100%, 0.87);
 }
 
 .auth-link:hover {
