@@ -3,15 +3,14 @@ import {COLORS, DEFAULT_COLOR} from "../../constants";
 import {ICON_COLOR, ICON_TYPE, MediumIcon} from "../../containers/Icon/Icon";
 import './TaskAdd.css';
 
-export const TaskAdd = ({project, onTaskAdd, userId}) => {
+export const TaskAdd = ({project, onTaskAdd}) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isInputActive, setIsInputActive] = useState(false);
     const [taskName, setTaskName] = useState('');
 
     if (isInputActive) {
-        return <form onSubmit={e => {
-            e.preventDefault();
-            onTaskAdd({projectId: project.id, name: taskName}, userId);
+        return <form onSubmit={() => {
+            onTaskAdd({projectId: project.id, name: taskName});
             setTaskName('');
             setIsInputActive(false);
         }}>

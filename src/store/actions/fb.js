@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import * as firebaseActions from "../../firebaseActions";
 
+export const userIdSelector = (state) => state.auth.userId;
+
 export const setProjects = projects => {
     return {
         type: actionTypes.INIT_PROJECTS,
@@ -8,9 +10,9 @@ export const setProjects = projects => {
     };
 };
 
-export const initProjects = userId => {
-    return dispatch => {
-        firebaseActions.fetchProjects(data => dispatch(setProjects(data)), userId)
+export const initProjects = () => {
+    return (dispatch, getState) => {
+        firebaseActions.fetchProjects(data => dispatch(setProjects(data)), userIdSelector(getState()))
     };
 };
 
@@ -21,9 +23,9 @@ export const setTasks = tasks => {
     };
 };
 
-export const initTasks = userId => {
-    return dispatch => {
-        firebaseActions.fetchTasks(data => dispatch(setTasks(data)), userId)
+export const initTasks = () => {
+    return (dispatch, getState) => {
+        firebaseActions.fetchTasks(data => dispatch(setTasks(data)), userIdSelector(getState()))
     };
 };
 
@@ -51,8 +53,9 @@ export const errorDismiss = () => ({type: actionTypes.FB_ERROR_DISMISS})
 export const successDismiss = () => ({type: actionTypes.SUCCESS_DISMISS})
 
 const firebaseDispatch = (action, message) => {
-    return dispatch => {
-        action()
+    return (dispatch, getState) => {
+        const userId = userIdSelector(getState());
+        action(userId)
             .then(() => {
                 dispatch(firebaseSuccess(message));
                 setTimeout(() => {
@@ -63,45 +66,45 @@ const firebaseDispatch = (action, message) => {
     };
 }
 
-export const addProjectFb = (projectData, userId) => {
+export const addProjectFb = (projectData) => {
     return firebaseDispatch(
-        () => firebaseActions.createProject(projectData, userId),
+        userId => firebaseActions.createProject(projectData, userId),
         "Project has been created"
     )
 };
 
-export const editProjectFb = (id, projectData, userId) => {
+export const editProjectFb = (id, projectData) => {
     return firebaseDispatch(
-        () => firebaseActions.editProject(id, projectData, userId),
+        userId => firebaseActions.editProject(id, projectData, userId),
         "Changes saved successfully"
     )
 };
 
-export const deleteProjectFb = (id, userId) => {
+export const deleteProjectFb = id => {
     return firebaseDispatch(
-        () => Promise.all([
+        userId => Promise.all([
             firebaseActions.deleteProject(id, userId),
             firebaseActions.deleteTasksByProjectId(id, userId)
         ]), "Project has been deleted"
     )
 }
 
-export const addTaskFb = (taskData, userId) => {
+export const addTaskFb = taskData => {
     return firebaseDispatch(
-        () => firebaseActions.createTask(taskData, userId),
+        userId => firebaseActions.createTask(taskData, userId),
         "Task has been added")
 };
 
-export const editTaskFb = (id, taskData, userId) => {
+export const editTaskFb = (id, taskData) => {
     return firebaseDispatch(
-        () => firebaseActions.editTask(id, taskData, userId),
+        userId => firebaseActions.editTask(id, taskData, userId),
         "Changes saved successfully"
     )
 };
 
-export const deleteTaskFb = (id, userId) => {
+export const deleteTaskFb = id => {
     return firebaseDispatch(
-        () => firebaseActions.deleteTask(id, userId),
+        userId => firebaseActions.deleteTask(id, userId),
         "Task has been deleted"
     )
 };

@@ -25,18 +25,18 @@ const projectSelector = (projects, projectId) => {
     }
 }
 
-const mapStateToProps = ({firebase: {tasks, projects, isProjectsFetching}, auth: {userId}}, {projectId}) => (
+const mapStateToProps = ({firebase: {tasks, projects, isProjectsFetching}}, {projectId}) => (
     {
         isProjectsFetching,
         tasks: tasksSelector(tasks, projects, projectId),
-        project: projectSelector(projects, projectId),
-        userId
+        project: projectSelector(projects, projectId)
     }
+
 );
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLoad: userId => dispatch(actionCreators.initTasks(userId))
+        onLoad: () => dispatch(actionCreators.initTasks())
     }
 };
 
