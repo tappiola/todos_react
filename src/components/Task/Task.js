@@ -52,7 +52,7 @@ export const Task = (
                         <option value="not-selected">Not selected</option>
                         {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
-                </div> : <span className="text" onClick={() => setIsHovered(!isHovered)}>{task.name}</span>}
+                </div> : <span className="task__text" onClick={() => setIsHovered(!isHovered)}>{task.name}</span>}
             </div>
             <div>
                 {!isInputActive && isHovered && <>

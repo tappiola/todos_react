@@ -52,6 +52,10 @@
     width: 95%;
 }
 
+.task__text {
+    width: 100%;
+}
+
 @media (max-width: 900px) {
     .task-edit__input-container {
         display: flex;
@@ -81,7 +85,7 @@
         align-items: flex-start;
     }
 
-    .task__first-row-text span.text {
+    .task__first-row-text .task__text {
         align-self: center;
     }
 
