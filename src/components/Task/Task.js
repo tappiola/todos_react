@@ -25,6 +25,7 @@ export const Task = (
         className="task__container"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => setIsHovered(!isHovered)}
     >
         <div className="task__first-row">
             <div className="task__first-row-text">

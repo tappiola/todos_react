@@ -56,7 +56,7 @@ const App = ({userId, email, userLoadComplete, onLogout}) => {
             <Route exact path={URLS.REGISTER}>
                 {!userId && <LoginForm/>}
             </Route>
-            {userId && <Route>onLogout
+            {userId && <Route>
                 <ProtectedContent/>
             </Route>}
         </Switch>
