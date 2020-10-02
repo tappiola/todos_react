@@ -25,7 +25,6 @@ export const Task = (
         className="task__container"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => setIsHovered(!isHovered)}
     >
         <div className="task__first-row">
             <div className="task__first-row-text">
@@ -53,7 +52,7 @@ export const Task = (
                         <option value="not-selected">Not selected</option>
                         {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
                     </select>
-                </div> : <span className="text">{task.name}</span>}
+                </div> : <span className="text" onClick={() => setIsHovered(!isHovered)}>{task.name}</span>}
             </div>
             <div>
                 {!isInputActive && isHovered && <>
