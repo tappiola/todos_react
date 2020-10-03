@@ -2,7 +2,7 @@ import React from 'react';
 import './ProjectsList.css';
 import {Icon, ICON_COLOR, ICON_TYPE, MediumIcon, SmallIcon} from "../../containers/Icon/Icon";
 import {NavLink} from "react-router-dom";
-import {COLORS, DEFAULT_COLOR} from "../../constants";
+import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 
 export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit}) => {
 

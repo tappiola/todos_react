@@ -1,5 +1,5 @@
 import * as actionTypes from './../actions/actionTypes';
-import * as authActions from "../../authActions";
+import * as authActions from "../../firebase/authActions";
 
 export const setUser = user => {
     return {

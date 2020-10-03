@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './LoginForm.css';
 import {useHistory} from "react-router";
-import {URLS} from "../../urls";
+import {URLS} from "../../constants/urls";
 
 const AUTH_MODE = {
     LOGIN: 'Login',

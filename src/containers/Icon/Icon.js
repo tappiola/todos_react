@@ -1,6 +1,6 @@
 import './Icon.css';
 import React from "react";
-import {COLORS} from "../../constants";
+import {COLORS} from "../../constants/colors";
 
 export const ICON_TYPE = {
     CHECKBOX_COMPLETE: 'fa-check-square',

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {COLORS, DEFAULT_COLOR} from "../../constants";
+import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 import {ICON_COLOR, ICON_TYPE, MediumIcon} from "../../containers/Icon/Icon";
 import './TaskAdd.css';
 

@@ -1,9 +1,9 @@
 import './ProjectModal.css';
 import React, {useState} from "react";
-import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants";
+import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants/colors";
 import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 import {useHistory} from "react-router";
-import {URLS} from "../../urls";
+import {URLS} from "../../constants/urls";
 
 export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete}) => {
     const [name, setName] = useState(project?.name || '');

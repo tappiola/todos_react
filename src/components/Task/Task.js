@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './Task.css';
 import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
-import {COLORS, DEFAULT_COLOR} from "../../constants";
+import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 
 export const Task = (
     {task, currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}

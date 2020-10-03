@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import * as firebaseActions from "../../firebaseActions";
+import * as firebaseActions from "../../firebase/firestoreActions";
 
 export const userIdSelector = (state) => state.auth.userId;
 

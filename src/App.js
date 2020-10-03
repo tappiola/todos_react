@@ -9,7 +9,7 @@ import SuccessPopup from "./components/SuccessPopup";
 import LoginForm from "./components/LoginForm";
 import {connect} from "react-redux";
 import * as actionCreators from "./store/actions/auth";
-import {URLS} from "./urls";
+import {URLS} from "./constants/urls";
 
 const App = ({userId, email, userLoadComplete, onLogout}) => {
     const [menuOpen, setMenuOpen] = useState(false);
