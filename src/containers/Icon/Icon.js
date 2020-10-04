@@ -31,16 +31,16 @@ export const ICON_COLOR = {
 export const Icon = ({iconType, color, onClick, classes = []}) => {
     return <span className="icon" style={{color}} onClick={onClick}>
                 <i className={`fas ${iconType} ${classes.join(' ')}`}/>
-            </span>
+    </span>
 }
 
 export const MediumIcon = ({iconType, color, onClick, classes = []}) => {
     return <span className="icon-medium" style={{color}} onClick={onClick}>
             <i className={`fas ${iconType} ${classes.join(' ')}`}/>
-        </span>
+    </span>
 }
 export const SmallIcon = ({iconType, color, onClick, classes = []}) => {
     return <span className="icon-small" style={{color}} onClick={onClick}>
                 <i className={`fas ${iconType} ${classes.join(' ')}`}/>
-            </span>
+    </span>
 }

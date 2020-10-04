@@ -74,6 +74,7 @@
     text-decoration: underline;
     padding-left: 20px;
     color: hsla(0, 0%, 100%, 0.87);
+    cursor: pointer;
 }
 
 .auth-link:hover {
@@ -97,7 +98,11 @@
         padding: 35px 55px;
     }
 
+    #top-panel {
+        justify-content: flex-end;
+    }
+
     .user-message {
-    flex-direction: row;
-}
+        flex-direction: row;
+    }
 }

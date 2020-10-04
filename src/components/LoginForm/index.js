@@ -2,7 +2,7 @@ import {LoginForm as PresentationalLoginForm} from './LoginForm';
 import {connect} from 'react-redux';
 import * as actionCreators from "../../store/actions/auth";
 
-const mapStateToProps = ({auth: {error,}}) => ({error});
+const mapStateToProps = ({auth: {error}}) => ({error});
 
 const mapDispatchToProps = (dispatch) => {
     return {

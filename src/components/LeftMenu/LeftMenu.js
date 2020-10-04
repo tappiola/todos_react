@@ -9,19 +9,18 @@ export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose}) => {
     const [showEditProjectModal, setShowEditProjectModal] = useState(false);
     const [editedProject, setEditedProject] = useState({});
 
-    useEffect(() => {
-        onLoad();
-    }, [onLoad])
+    useEffect(() => onLoad(), [onLoad]);
 
     return <>
         {showAddProjectModal && <ProjectModal onModalClose={() => setShowAddProjectModal(false)}/>}
-        {showEditProjectModal && <ProjectModal
-            onModalClose={() => {
-                setShowEditProjectModal(false);
-                setEditedProject({});
-            }}
-            project={editedProject}
-        />}
+        {showEditProjectModal &&
+            <ProjectModal
+                onModalClose={() => {
+                    setShowEditProjectModal(false);
+                    setEditedProject({});
+                }}
+                project={editedProject}
+            />}
         {menuOpen && <div className="backdrop-mobile" onClick={onMenuClose}/>}
         <div id="left-menu" className={menuOpen ? '' : 'hidden'}>
             <ProjectsList
@@ -30,8 +29,7 @@ export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose}) => {
                 onProjectAdd={() => setShowAddProjectModal(true)}
                 onProjectEdit={project => {
                     setShowEditProjectModal(true);
-                    setEditedProject(project)
-
+                    setEditedProject(project);
                 }}
             />
         </div>

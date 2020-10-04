@@ -13,6 +13,7 @@ export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
     if (isProjectsFetching) {
         return null;
     }
+
     if (!project) {
         return <div className="message">Project doesn't exist</div>
     }
@@ -27,7 +28,8 @@ export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
                 currentProject={project}
                 taskProject={project.id === 'focus' ? task.assignedProject : project}
                 activeTaskId={activeTaskId}
-                onSetActiveTask={taskId => setActiveTaskId(taskId)}/>)}
+                onSetActiveTask={taskId => setActiveTaskId(taskId)}
+            />)}
         </div>
         {project.name !== 'Focus' && <TaskAdd project={project}/>}
     </div>

@@ -14,5 +14,6 @@ export const SuccessPopup = ({successMessage, onSuccessDismiss}) => {
             classes={["top-right"]}
             onClick={onSuccessDismiss}
         />
-        {successMessage}</div>
+        {successMessage}
+    </div>
 }

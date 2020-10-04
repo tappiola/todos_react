@@ -36,7 +36,7 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
     }
 
     return <div className="login-container">
-        <form className="login-form" onSubmit={(e) => {
+        <form className="login-form" onSubmit={e => {
             e.preventDefault();
             if (error) {
                 onErrorDismiss();
@@ -47,10 +47,20 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
                 <AuthModeSelector mode={AUTH_MODE.LOGIN}/>
                 <AuthModeSelector mode={AUTH_MODE.REGISTER}/>
             </div>
-            <input type="email" name="email" placeholder="Email" value={email}
-                   onChange={e => setEmail(e.target.value)}/>
-            <input autoComplete="on" type="password" placeholder="Password" value={password}
-                   onChange={e => setPassword(e.target.value)}/>
+            <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+            />
+            <input
+                autoComplete="on"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+            />
             <div className="error-message">{error}</div>
             <button type="submit" disabled={!email || !password}>
                 {authMode === AUTH_MODE.LOGIN ? "Sign in" : "Register"}

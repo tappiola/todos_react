@@ -1,5 +1,5 @@
 import './ProjectModal.css';
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants/colors";
 import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 import {useHistory} from "react-router";
@@ -11,6 +11,19 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
     const [color, setColor] = useState(project?.color ? getColorObject(project.color) : DEFAULT_COLOR);
     const history = useHistory();
 
+    const deleteHandler = useCallback(() => {
+        onProjectDelete(project.id);
+        onModalClose();
+        history.push(URLS.INBOX);
+    }, [history, onModalClose, onProjectDelete, project]);
+
+    const projectHandler = useCallback(() => {
+        project
+            ? onProjectEdit(project.id, {name, description, color: color.humanColor})
+            : onProjectAdd({name, description, color: color.humanColor});
+        onModalClose();
+    }, [color.humanColor, description, name, onModalClose, onProjectAdd, onProjectEdit, project]);
+
     return <>
         <div className="backdrop"/>
         <div className="project-modal">
@@ -21,35 +34,23 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
                 value={name}
                 onChange={e => setName(e.target.value)}
             />
-            <textarea rows="5"
-                      className="project-modal__description"
-                      maxLength="300"
-                      placeholder="Description"
-                      value={description}
-                      onChange={e => setDescription(e.target.value)}/>
+            <textarea
+                rows="5"
+                className="project-modal__description"
+                maxLength="300"
+                placeholder="Description"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+            />
             <ColorSelector
                 options={COLORS_LIST}
                 color={color}
                 onColorChange={color => setColor(color)}
             />
             <div className="button-container">
-                {project && <button className="delete-button" onClick={() => {
-                    onProjectDelete(project.id);
-                    onModalClose();
-                    history.push(URLS.INBOX);
-                }}>Delete
-                </button>}
+                {project && <button className="delete-button" onClick={deleteHandler}>Delete</button>}
                 <button className="cancel-button" onClick={onModalClose}>Cancel</button>
-                <button
-                    onClick={() => {
-                        project ?
-                            onProjectEdit(project.id, {name, description, color: color.humanColor})
-                            : onProjectAdd({name, description, color: color.humanColor});
-                        onModalClose();
-                    }}
-                    disabled={!name}
-                >{project ? 'Save' : 'Add'}
-                </button>
+                <button onClick={projectHandler} disabled={!name}>{project ? 'Save' : 'Add'}</button>
             </div>
         </div>
     </>

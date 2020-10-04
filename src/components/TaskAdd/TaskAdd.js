@@ -9,7 +9,8 @@ export const TaskAdd = ({project, onTaskAdd}) => {
     const [taskName, setTaskName] = useState('');
 
     if (isInputActive) {
-        return <form onSubmit={() => {
+        return <form
+            onSubmit={() => {
             onTaskAdd({projectId: project.id, name: taskName});
             setTaskName('');
             setIsInputActive(false);
@@ -22,10 +23,7 @@ export const TaskAdd = ({project, onTaskAdd}) => {
                 ref={input => input && input.focus()}
             />
             <div>
-                <button type="submit"
-                        disabled={!taskName}
-                >Add task
-                </button>
+                <button type="submit" disabled={!taskName}>Add task</button>
                 <button
                     className="cancel-button"
                     onClick={() => {

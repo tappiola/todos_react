@@ -21,7 +21,11 @@ export const ColorSelector = ({options, color, onColorChange}) => {
         <div className="input-label">Project color</div>
         <div className="selected-color" onClick={() => setIsSelectOpen(true)}>
             <div>
-                <SmallIcon color={color.colorCode} iconType={ICON_TYPE.CIRCLE} classes={['bullet-point']}/>
+                <SmallIcon
+                    color={color.colorCode}
+                    iconType={ICON_TYPE.CIRCLE}
+                    classes={['bullet-point']}
+                />
                 {color.humanColor}
             </div>
             <SmallIcon

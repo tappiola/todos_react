@@ -10,8 +10,11 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit
         <NavLink to={`/projects/${project.id}`}>
             <div className="project-item" onClick={onMenuClose}>
                 <div>
-                    <SmallIcon iconType={ICON_TYPE.CIRCLE} color={COLORS[project.color] || DEFAULT_COLOR.colorCode}
-                               classes={['bullet-point']}/>
+                    <SmallIcon
+                        iconType={ICON_TYPE.CIRCLE}
+                        color={COLORS[project.color] || DEFAULT_COLOR.colorCode}
+                        classes={['bullet-point']}
+                    />
                     {project.name}
                 </div>
                 <MediumIcon
