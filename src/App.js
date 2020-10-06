@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
 import {HamburgerButton} from "./containers/HamburgerButton/HamburgerButton";
-import LeftMenu from "./components/LeftMenu";
-import TasksList from "./components/TasksList";
 import {Redirect, Route, Switch} from "react-router";
 import ErrorPopup from "./components/ErrorPopup";
 import SuccessPopup from "./components/SuccessPopup";
@@ -10,32 +8,10 @@ import LoginForm from "./components/LoginForm";
 import {connect} from "react-redux";
 import * as actionCreators from "./store/actions/auth";
 import {URLS} from "./constants/urls";
+import {AppProtected} from "./AppProtected";
 
 const App = ({userId, email, userLoadComplete, onLogout}) => {
     const [menuOpen, setMenuOpen] = useState(false);
-
-    const ProtectedContent = () => {
-        return <div id="main">
-            <LeftMenu menuOpen={menuOpen} onMenuClose={() => setMenuOpen(false)}/>
-            <Switch>
-                <Route exact path="/">
-                    <Redirect to={URLS.INBOX}/>
-                </Route>
-                <Route exact path={URLS.INBOX}>
-                    <TasksList projectId="inbox"/>
-                </Route>
-                <Route exact path={URLS.FOCUS}>
-                    <TasksList projectId="focus"/>
-                </Route>
-                <Route exact path={`${URLS.PROJECTS}/:id`}>
-                    {({match}) => <TasksList projectId={match.params.id}/>}
-                </Route>
-                <Route>
-                    <div className="message">Project not found</div>
-                </Route>
-            </Switch>
-        </div>
-    }
 
     if (!userLoadComplete) {
         return null
@@ -60,7 +36,7 @@ const App = ({userId, email, userLoadComplete, onLogout}) => {
                 {!userId && <LoginForm/>}
             </Route>
             {userId && <Route>
-                <ProtectedContent/>
+                <AppProtected menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
             </Route>}
         </Switch>
         {!userId ? <Redirect to={URLS.LOGIN}/> :
