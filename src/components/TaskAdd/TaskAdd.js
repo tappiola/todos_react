@@ -10,10 +10,11 @@ export const TaskAdd = ({project, onTaskAdd}) => {
 
     if (isInputActive) {
         return <form
-            onSubmit={() => {
-            onTaskAdd({projectId: project.id, name: taskName});
-            setTaskName('');
-            setIsInputActive(false);
+            onSubmit={e => {
+                e.preventDefault();
+                onTaskAdd({projectId: project.id, name: taskName});
+                setTaskName('');
+                setIsInputActive(false);
         }}>
             <input
                 className="task-add__input"

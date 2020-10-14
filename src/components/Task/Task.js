@@ -1,10 +1,16 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import './Task.css';
 import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 
+const useFocus = () => {
+    const htmlElRef = useRef(null)
+    const setFocus = useCallback(() => {htmlElRef.current &&  htmlElRef.current.focus()}, [])
+    return [ htmlElRef, setFocus ]
+}
+
 export const Task = (
-    {task, currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}
+    {task,currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}
 ) => {
     const [complete, setComplete] = useState(task.isComplete);
     const [focused, setFocused] = useState(task.isFocusedOn);
@@ -12,6 +18,7 @@ export const Task = (
     const [isInputActive, setIsInputActive] = useState(false);
     const [inputValue, setInputValue] = useState(task.name);
     const [projectId, setProjectId] = useState(taskProject?.id || 'not-selected');
+    const [inputRef, setInputFocus] = useFocus();
     const {id} = task;
 
     useEffect(() => {
@@ -51,6 +58,10 @@ export const Task = (
         />
     }
 
+    useEffect(() => {
+        isInputActive && setInputFocus()
+    }, [isInputActive, setInputFocus]);
+
     const TaskEditButton = () => {
         return <Icon
             iconType={ICON_TYPE.EDIT}
@@ -85,7 +96,8 @@ export const Task = (
                         className="task-edit__input"
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
-                        ref={input => {input && input.focus()}}
+                        ref={inputRef}
+                        // ref={input => {input && input.focus()}}
                     />
                     <select
                         id="project-select"
