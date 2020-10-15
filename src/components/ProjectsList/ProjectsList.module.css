@@ -1,38 +1,38 @@
-.left-menu__items {
+.menuItems {
     padding: 30px;
 }
 
-#left-menu .item {
+.menuItem {
     padding: 10px 0;
     display: flex;
     align-items: center;
 }
 
-#left-menu .project-item {
+.projectItem {
     padding: 10px 10px 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.project-item div {
+.projectItem div {
     display: flex;
     align-items: center;
     white-space: nowrap;
 }
 
-.left-menu__category {
+.category {
     justify-content: space-between;
     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
     font-weight: bold;
 }
 
-#left-menu a {
+a {
     color: hsla(0, 0%, 100%, 0.87);
     text-decoration: none;
 }
 
-.item div {
+.menuItem div {
     display: flex;
     align-items: center;
 }

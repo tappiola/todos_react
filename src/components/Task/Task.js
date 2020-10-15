@@ -1,23 +1,29 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
-import './Task.css';
+import classes from './Task.module.css';
 import {Icon, ICON_COLOR, ICON_TYPE} from "../../containers/Icon/Icon";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
+import {Button, CancelButton} from "../../containers/Button/Button";
+import iconStyles from '../../containers/Icon/Icon.module.css';
+
+const EMPTY_ID = 'not-selected';
 
 const useFocus = () => {
     const htmlElRef = useRef(null)
-    const setFocus = useCallback(() => {htmlElRef.current &&  htmlElRef.current.focus()}, [])
-    return [ htmlElRef, setFocus ]
+    const setFocus = useCallback(() => {
+        htmlElRef.current && htmlElRef.current.focus()
+    }, [])
+    return [htmlElRef, setFocus]
 }
 
 export const Task = (
-    {task,currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}
+    {task, currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}
 ) => {
     const [complete, setComplete] = useState(task.isComplete);
     const [focused, setFocused] = useState(task.isFocusedOn);
     const [isHovered, setIsHovered] = useState(false);
     const [isInputActive, setIsInputActive] = useState(false);
     const [inputValue, setInputValue] = useState(task.name);
-    const [projectId, setProjectId] = useState(taskProject?.id || 'not-selected');
+    const [projectId, setProjectId] = useState(taskProject?.id || EMPTY_ID);
     const [inputRef, setInputFocus] = useFocus();
     const {id} = task;
 
@@ -28,7 +34,7 @@ export const Task = (
     }, [activeTaskId, id]);
 
     const taskSaveHandler = () => {
-        onTaskEdit(id, {name: inputValue, projectId: projectId === 'not-selected' ? null : projectId});
+        onTaskEdit(id, {name: inputValue, projectId: projectId === EMPTY_ID ? null : projectId});
         setIsInputActive(false);
     }
 
@@ -41,7 +47,7 @@ export const Task = (
                 setComplete(newStatus);
                 onTaskEdit(id, {isComplete: newStatus});
             }}
-            classes={['task-checkbox']}
+            classes={[iconStyles.taskCheckbox]}
         />
     }
 
@@ -54,7 +60,7 @@ export const Task = (
                 setFocused(newStatus);
                 onTaskEdit(id, {isFocusedOn: newStatus});
             }}
-            classes={['expandable']}
+            classes={[iconStyles.expandable]}
         />
     }
 
@@ -83,31 +89,30 @@ export const Task = (
     }
 
     return <div
-        className="task__container"
+        className={classes.container}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
     >
-        <div className="task__first-row">
-            <div className="task__first-row-text">
+        <div className={classes.firstRow}>
+            <div className={classes.firstRowText}>
                 <TaskCompleteCheckbox/>
                 {isInputActive
-                    ? <div className="task-edit__input-container">
-                    <input
-                        className="task-edit__input"
-                        value={inputValue}
-                        onChange={e => setInputValue(e.target.value)}
-                        ref={inputRef}
-                        // ref={input => {input && input.focus()}}
-                    />
-                    <select
-                        id="project-select"
-                        defaultValue={projectId}
-                        onChange={e => setProjectId(e.target.value)}>
-                        <option value="not-selected">Not selected</option>
-                        {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-                    </select>
-                </div>
-                    : <span className="task__text" onClick={() => setIsHovered(!isHovered)}>{task.name}</span>}
+                    ? <div className={classes.taskEditInputContainer}>
+                        <input
+                            className={classes.taskEditInput}
+                            value={inputValue}
+                            onChange={e => setInputValue(e.target.value)}
+                            ref={inputRef}
+                        />
+                        <select
+                            className={classes.projectSelect}
+                            defaultValue={projectId}
+                            onChange={e => setProjectId(e.target.value)}>
+                            <option value={EMPTY_ID}>Not selected</option>
+                            {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                        </select>
+                    </div>
+                    : <span className={classes.text} onClick={() => setIsHovered(!isHovered)}>{task.name}</span>}
             </div>
             <div>
                 {!isInputActive && isHovered && <>
@@ -115,15 +120,15 @@ export const Task = (
                     <TaskEditButton/>
                 </>}
                 {(currentProject.id === 'focus' && taskProject && !isInputActive) && <div
-                    className="project-label"
+                    className={classes.projectLabel}
                     style={{backgroundColor: COLORS[taskProject.color] || DEFAULT_COLOR.colorCode}}
                 >{taskProject.name}</div>}
                 <TaskFocusIcon/>
             </div>
         </div>
         {isInputActive && <div>
-            <button disabled={!inputValue} onClick={taskSaveHandler}>Save</button>
-            <button className="cancel-button" onClick={() => setIsInputActive(false)}>Cancel</button>
+            <Button disabled={!inputValue} onClick={taskSaveHandler}>Save</Button>
+            <CancelButton onClick={() => setIsInputActive(false)}/>
         </div>}
     </div>
 }

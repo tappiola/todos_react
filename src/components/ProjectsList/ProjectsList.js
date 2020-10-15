@@ -1,45 +1,47 @@
 import React from 'react';
-import './ProjectsList.css';
+import classes from './ProjectsList.module.css';
+import iconStyles from '../../containers/Icon/Icon.module.css';
 import {Icon, ICON_COLOR, ICON_TYPE, MediumIcon, SmallIcon} from "../../containers/Icon/Icon";
 import {NavLink} from "react-router-dom";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
+import {URLS} from "../../constants/urls";
 
 export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit}) => {
 
     const Project = ({project}) =>
-        <NavLink to={`/projects/${project.id}`}>
-            <div className="project-item" onClick={onMenuClose}>
+        <NavLink to={`${URLS.PROJECTS}/${project.id}`} activeClassName={classes.active}>
+            <div className={classes.projectItem} onClick={onMenuClose}>
                 <div>
                     <SmallIcon
                         iconType={ICON_TYPE.CIRCLE}
                         color={COLORS[project.color] || DEFAULT_COLOR.colorCode}
-                        classes={['bullet-point']}
+                        classes={[iconStyles.bulletPoint]}
                     />
                     {project.name}
                 </div>
                 <MediumIcon
                     iconType={ICON_TYPE.EDIT}
                     color={ICON_COLOR.GREY}
-                    classes={['show-hover']}
+                    classes={[iconStyles.showHover]}
                     onClick={() => onProjectEdit(project)}
                 />
             </div>
         </NavLink>
 
-    return <div className="left-menu__items">
-        <NavLink to={`/inbox`}>
-            <div className="item" onClick={onMenuClose}>
+    return <div className={classes.menuItems}>
+        <NavLink to={URLS.INBOX} activeClassName={classes.active}>
+            <div className={classes.menuItem} onClick={onMenuClose}>
                 <Icon iconType={ICON_TYPE.INBOX} color={ICON_COLOR.BLUE}/>
                 Inbox
             </div>
         </NavLink>
-        <NavLink to={`/focus`}>
-            <div className="item" onClick={onMenuClose}>
+        <NavLink to={URLS.FOCUS} activeClassName={classes.active}>
+            <div className={classes.menuItem} onClick={onMenuClose}>
                 <Icon iconType={ICON_TYPE.STAR} color={ICON_COLOR.YELLOW}/>
                 Focus
             </div>
         </NavLink>
-        <div className="item left-menu__category">
+        <div className={`${classes.menuItem} ${classes.category}`}>
             <div>
                 <Icon iconType={ICON_TYPE.PROJECTS} color={ICON_COLOR.PINK}/>
                 Projects
@@ -47,11 +49,11 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit
             <MediumIcon
                 iconType={ICON_TYPE.ADD}
                 color={ICON_COLOR.GREY}
-                classes={['expandable']}
+                classes={[iconStyles.expandable]}
                 onClick={onProjectAdd}
             />
         </div>
-        <div className="projects-list">
+        <div>
             {projects.map((p, i) => <Project key={i} project={p}/>)}
         </div>
     </div>

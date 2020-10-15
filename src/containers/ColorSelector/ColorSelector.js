@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
-import './ColorSelector.css';
+import classes from './ColorSelector.module.css';
+import iconStyles from '../../containers/Icon/Icon.module.css';
 import {ICON_COLOR, ICON_TYPE, SmallIcon} from "../Icon/Icon";
 
 export const ColorSelector = ({options, color, onColorChange}) => {
@@ -17,30 +18,30 @@ export const ColorSelector = ({options, color, onColorChange}) => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [ref]);
 
-    return <div className="color-select-container">
-        <div className="input-label">Project color</div>
-        <div className="selected-color" onClick={() => setIsSelectOpen(true)}>
+    return <div>
+        <div className={classes.inputLabel}>Project color</div>
+        <div className={classes.selectedColor} onClick={() => setIsSelectOpen(true)}>
             <div>
                 <SmallIcon
                     color={color.colorCode}
                     iconType={ICON_TYPE.CIRCLE}
-                    classes={['bullet-point']}
+                    classes={[iconStyles.bulletPoint]}
                 />
                 {color.humanColor}
             </div>
             <SmallIcon
                 color={ICON_COLOR.WHITE}
                 iconType={isSelectOpen ? ICON_TYPE.SELECTOR_OPEN : ICON_TYPE.SELECTOR}
-                classes={['selector']}
+                classes={[iconStyles.selector]}
             />
         </div>
-        {isSelectOpen && <ul className="color-select" ref={ref}>
+        {isSelectOpen && <ul className={classes.select} ref={ref}>
             {options.map(c => <li key={c.humanColor}
                                   onClick={() => {
                                       onColorChange(c);
                                       setIsSelectOpen(false)
                                   }}>
-                <SmallIcon color={c.colorCode} iconType={ICON_TYPE.CIRCLE} classes={['bullet-point']}/>
+                <SmallIcon color={c.colorCode} iconType={ICON_TYPE.CIRCLE} classes={[iconStyles.bulletPoint]}/>
                 {c.humanColor}</li>)
             }
         </ul>}

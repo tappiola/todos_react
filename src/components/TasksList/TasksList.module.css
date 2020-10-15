@@ -1,0 +1,39 @@
+.container {
+    width: 100%;
+    padding: 20px 15px;
+    display: grid;
+    grid-auto-rows: min-content min-content fit-content(70%) min-content;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px 0;
+}
+
+.description {
+    background-color: #9692a5;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.74);
+}
+
+.list {
+    overflow-y: auto;
+    max-height: 400px;
+    width: 100%;
+}
+
+@media (min-width: 450px) {
+    .container {
+        padding: 20px 25px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 35px 55px;
+    }
+}

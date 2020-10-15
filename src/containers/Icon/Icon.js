@@ -1,4 +1,4 @@
-import './Icon.css';
+import styles from './Icon.module.css';
 import React from "react";
 import {COLORS} from "../../constants/colors";
 
@@ -28,19 +28,24 @@ export const ICON_COLOR = {
     GREY: COLORS.Grey,
 }
 
-export const Icon = ({iconType, color, onClick, classes = []}) => {
-    return <span className="icon" style={{color}} onClick={onClick}>
+export const Icon = ({iconType, color, onClick, classes = [], ...otherProps}) => {
+    return <span {...otherProps} className={styles.icon} style={{color}} onClick={onClick}>
                 <i className={`fas ${iconType} ${classes.join(' ')}`}/>
     </span>
 }
 
-export const MediumIcon = ({iconType, color, onClick, classes = []}) => {
-    return <span className="icon-medium" style={{color}} onClick={onClick}>
+export const MediumIcon = ({iconType, color, onClick, classes = [], ...otherProps}) => {
+    return <span {...otherProps} className={styles.iconMedium} style={{color}} onClick={onClick}>
             <i className={`fas ${iconType} ${classes.join(' ')}`}/>
     </span>
 }
-export const SmallIcon = ({iconType, color, onClick, classes = []}) => {
-    return <span className="icon-small" style={{color}} onClick={onClick}>
-                <i className={`fas ${iconType} ${classes.join(' ')}`}/>
+export const SmallIcon = ({iconType, color, onClick, classes = [], ...otherProps}) => {
+    return <span
+        {...otherProps}
+        className={styles.iconSmall}
+        style={{color}}
+        onClick={onClick}
+    >
+        <i className={`fas ${iconType} ${classes.join(' ')}`}/>
     </span>
 }

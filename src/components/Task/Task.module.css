@@ -1,23 +1,23 @@
-.task__container {
+.container {
     border-bottom: 1px solid hsla(0, 0%, 100%, .1);
     padding: 20px 0;
 }
 
-.task__first-row {
+.firstRow {
     display: flex;
     justify-content: space-between;
 }
 
-.task__first-row div {
+.firstRow div {
     display: flex;
     align-items: center;
 }
 
-.task__first-row-text {
+.firstRowText {
     width: 100%;
 }
 
-.project-label {
+.projectLabel {
     margin-right: 10px;
     padding: 4px 10px;
     border: 1px solid transparent;
@@ -28,7 +28,7 @@
     white-space: nowrap;
 }
 
-.task-edit__input {
+.taskEditInput {
     margin: 20px 0;
     width: 100%;
     border-radius: 5px 0 0 5px;
@@ -39,7 +39,7 @@
 
 }
 
-#project-select {
+.projectSelect {
     border-radius: 0 5px 5px 0;
     font-size: 16px;
     background-color: #282828;
@@ -48,22 +48,22 @@
     border-left: none;
 }
 
-.task-edit__input-container {
+.taskEditInputContainer {
     width: 95%;
 }
 
-.task__text {
+.text {
     width: 100%;
 }
 
 @media (max-width: 900px) {
-    .task-edit__input-container {
+    .taskEditInputContainer {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
 
-    #project-select, .task-edit__input {
+    .projectSelect, .taskEditInput {
         width: 95%;
         border: 1px solid gray;
         border-radius: 5px;
@@ -71,21 +71,21 @@
         margin-top: 0;
     }
 
-    #project-select {
+    .projectSelect {
         margin-bottom: 20px;
     }
 
-    .task__first-row {
+    .firstRow {
         display: flex;
         align-items: flex-start;
     }
 
-    .task__first-row div {
+    .firstRow div {
         display: flex;
         align-items: flex-start;
     }
 
-    .task__first-row-text .task__text {
+    .firstRowText .text {
         align-self: center;
     }
 

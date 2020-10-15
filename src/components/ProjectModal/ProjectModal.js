@@ -1,9 +1,10 @@
-import './ProjectModal.css';
+import classes from './ProjectModal.module.css';
 import React, {useCallback, useState} from "react";
 import {COLORS_LIST, DEFAULT_COLOR, getColorObject} from "../../constants/colors";
 import {ColorSelector} from "../../containers/ColorSelector/ColorSelector";
 import {useHistory} from "react-router";
 import {URLS} from "../../constants/urls";
+import {Button, CancelButton, DeleteButton} from "../../containers/Button/Button";
 
 export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete}) => {
     const [name, setName] = useState(project?.name || '');
@@ -25,18 +26,18 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
     }, [color.humanColor, description, name, onModalClose, onProjectAdd, onProjectEdit, project]);
 
     return <>
-        <div className="backdrop"/>
-        <div className="project-modal">
-            <div className="project-modal__title">{project ? 'Edit' : 'Add'} project</div>
+        <div className={classes.backdrop}/>
+        <div className={classes.modal}>
+            <div className={classes.title}>{project ? 'Edit' : 'Add'} project</div>
             <input
-                className="project-modal__name"
+                className={classes.name}
                 placeholder="Title"
                 value={name}
                 onChange={e => setName(e.target.value)}
             />
             <textarea
                 rows="5"
-                className="project-modal__description"
+                className={classes.description}
                 maxLength="300"
                 placeholder="Description"
                 value={description}
@@ -47,10 +48,10 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
                 color={color}
                 onColorChange={color => setColor(color)}
             />
-            <div className="button-container">
-                {project && <button className="delete-button" onClick={deleteHandler}>Delete</button>}
-                <button className="cancel-button" onClick={onModalClose}>Cancel</button>
-                <button onClick={projectHandler} disabled={!name}>{project ? 'Save' : 'Add'}</button>
+            <div className={classes.buttonContainer}>
+                {project && <DeleteButton onClick={deleteHandler}/>}
+                <CancelButton onClick={onModalClose}/>
+                <Button onClick={projectHandler} disabled={!name}>{project ? 'Save' : 'Add'}</Button>
             </div>
         </div>
     </>

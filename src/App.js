@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './App.css';
+import classes from './App.module.css';
 import {HamburgerButton} from "./containers/HamburgerButton/HamburgerButton";
 import {Redirect, Route, Switch} from "react-router";
 import ErrorPopup from "./components/ErrorPopup";
@@ -17,16 +17,16 @@ const App = ({userId, email, userLoadComplete, onLogout}) => {
         return null
     }
 
-    return <div id="container">
+    return <div className={classes.container}>
         <SuccessPopup/>
         <ErrorPopup/>
-        <div id="top-panel">
+        <div className={classes.topPanel}>
             {userId && <HamburgerButton menuOpen={menuOpen} onButtonClick={() => setMenuOpen(!menuOpen)}/>}
             {userId &&
-                <div className="user-message">
-                    <span>Logged in as {email}</span>
-                    <span className="auth-link" onClick={onLogout}>Logout</span>
-                </div>}
+            <div className={classes.userMessage}>
+                <span>Logged in as {email}</span>
+                <span className={classes.authLink} onClick={onLogout}>Logout</span>
+            </div>}
         </div>
         <Switch>
             <Route exact path={URLS.LOGIN}>

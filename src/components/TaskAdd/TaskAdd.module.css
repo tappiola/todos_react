@@ -1,9 +1,9 @@
-.task-add__button {
+.button {
     padding: 20px 0;
     cursor: pointer;
 }
 
-.task-add__input {
+.input {
     margin: 20px 0;
     width: 100%;
     border-radius: 5px;

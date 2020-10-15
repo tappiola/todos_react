@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import './LoginForm.css';
+import classes from './LoginForm.module.css';
 import {useHistory} from "react-router";
 import {URLS} from "../../constants/urls";
+import {Button} from "../../containers/Button/Button";
 
 const AUTH_MODE = {
     LOGIN: 'Login',
@@ -22,7 +23,7 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
 
     const AuthModeSelector = ({mode}) => {
         return <div
-            className={authMode === mode ? 'selected' : ''}
+            className={authMode === mode ? classes.selected : ''}
             onClick={() => {
                 setAuthMode(mode);
                 setEmail('');
@@ -35,15 +36,15 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
         >{mode}</div>
     }
 
-    return <div className="login-container">
-        <form className="login-form" onSubmit={e => {
+    return <div className={classes.container}>
+        <form className={classes.form} onSubmit={e => {
             e.preventDefault();
             if (error) {
                 onErrorDismiss();
             }
             authMode === AUTH_MODE.LOGIN ? onLogin(email, password) : onRegister(email, password);
         }}>
-            <div className="auth-selector">
+            <div className={classes.modeSelector}>
                 <AuthModeSelector mode={AUTH_MODE.LOGIN}/>
                 <AuthModeSelector mode={AUTH_MODE.REGISTER}/>
             </div>
@@ -61,10 +62,10 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
             />
-            <div className="error-message">{error}</div>
-            <button type="submit" disabled={!email || !password}>
+            <div className={classes.errorMessage}>{error}</div>
+            <Button type="submit" disabled={!email || !password}>
                 {authMode === AUTH_MODE.LOGIN ? "Sign in" : "Register"}
-            </button>
+            </Button>
         </form>
     </div>
 }

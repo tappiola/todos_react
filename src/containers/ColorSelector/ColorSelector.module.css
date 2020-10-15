@@ -1,4 +1,4 @@
-.color-select {
+.select {
     position: absolute;
     width: 608px;
     height: 100px;
@@ -10,7 +10,7 @@
     border: 1px solid black;
 }
 
-.color-select li {
+.select li {
     padding-top: 4px;
     padding-bottom: 4px;
     font-size: 14px;
@@ -18,11 +18,11 @@
     align-items: center;
 }
 
-.color-select li:hover {
+.select li:hover {
     background-color: #555555
 }
 
-.selected-color {
+.selectedColor {
     width: 100%;
     height: 33px;
     background-color: #1F1F1F;
@@ -34,8 +34,13 @@
     border-radius: 5px;
 }
 
+.inputLabel {
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
 @media (max-width: 768px) {
-    .color-select {
+    .select {
         width: calc(100% - 60px);
     }
 }

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './LeftMenu.css';
+import classes from './LeftMenu.module.css';
 import ProjectsList from "../ProjectsList";
 import ProjectModal from "../ProjectModal";
 
@@ -14,15 +14,15 @@ export const LeftMenu = ({menuOpen, projects, onLoad, onMenuClose}) => {
     return <>
         {showAddProjectModal && <ProjectModal onModalClose={() => setShowAddProjectModal(false)}/>}
         {showEditProjectModal &&
-            <ProjectModal
-                onModalClose={() => {
-                    setShowEditProjectModal(false);
-                    setEditedProject({});
-                }}
-                project={editedProject}
-            />}
-        {menuOpen && <div className="backdrop-mobile" onClick={onMenuClose}/>}
-        <div id="left-menu" className={menuOpen ? '' : 'hidden'}>
+        <ProjectModal
+            onModalClose={() => {
+                setShowEditProjectModal(false);
+                setEditedProject({});
+            }}
+            project={editedProject}
+        />}
+        {menuOpen && <div className={classes.backdropMobile} onClick={onMenuClose}/>}
+        <div className={`${classes.menu} ${menuOpen ? '' : classes.hidden}`}>
             <ProjectsList
                 projects={projects}
                 onMenuClose={onMenuClose}

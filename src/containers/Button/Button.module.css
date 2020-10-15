@@ -1,0 +1,24 @@
+.button {
+    color: hsla(0, 0%, 100%, 0.87);
+    background-color: darkslateblue;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.button.cancelButton {
+    background-color: #353242;
+}
+
+.button.deleteButton {
+    background-color: #5f1e1e;
+}
+
+.button:disabled {
+    background-color: gray;
+}

@@ -1,4 +1,4 @@
-.left_menu_toggle {
+.toggle {
     border-radius: 4px;
     padding: 4px 4px 0 4px;
     background-color: transparent;
@@ -6,27 +6,24 @@
     outline: none;
 }
 
-.top_bar_btn {
+.button {
     color: hsla(0, 0%, 100%, .87);
 }
 
-.icon-hidden {
+.hidden {
     display: none;
 }
 
-.left_menu_toggle:hover {
+.toggle:hover {
     background-color: grey;
 }
 
-.left_menu_toggle {
+.toggle {
     margin-left: 0;
 }
 
 @media (min-width: 768px) {
-    .left_menu_toggle {
+    .toggle {
         display: none;
     }
 }
-
-
-

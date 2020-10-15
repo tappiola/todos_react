@@ -1,7 +1,8 @@
 import Task from "../Task";
 import React, {useEffect, useState} from "react";
-import './TasksList.css';
+import classes from './TasksList.module.css';
 import TaskAdd from "../TaskAdd";
+import {Message} from "../../containers/Message/Message";
 
 export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
     const [activeTaskId, setActiveTaskId] = useState(null);
@@ -15,13 +16,13 @@ export const TasksList = ({project, tasks, onLoad, isProjectsFetching}) => {
     }
 
     if (!project) {
-        return <div className="message">Project doesn't exist</div>
+        return <Message>Project doesn't exist</Message>
     }
 
-    return <div id="main-content">
-        <div className="main__title">{project.name}</div>
-        {project.description && <div className="main__description">{project.description}</div>}
-        <div className="main__tasks">
+    return <div className={classes.container}>
+        <div className={classes.title}>{project.name}</div>
+        {project.description && <div className={classes.description}>{project.description}</div>}
+        <div className={classes.list}>
             {tasks.map(task => <Task
                 key={task.id}
                 task={task}
