@@ -29,14 +29,24 @@ export const ICON_COLOR = {
 }
 
 export const Icon = ({iconType, color, onClick, classes = [], ...otherProps}) => {
-    return <span {...otherProps} className={styles.icon} style={{color}} onClick={onClick}>
-                <i className={`fas ${iconType} ${classes.join(' ')}`}/>
+    return <span
+        {...otherProps}
+        className={styles.icon}
+        style={{color}}
+        onClick={onClick}
+    >
+        <i className={`fas ${iconType} ${classes.join(' ')}`}/>
     </span>
 }
 
 export const MediumIcon = ({iconType, color, onClick, classes = [], ...otherProps}) => {
-    return <span {...otherProps} className={styles.iconMedium} style={{color}} onClick={onClick}>
-            <i className={`fas ${iconType} ${classes.join(' ')}`}/>
+    return <span
+        {...otherProps}
+        className={styles.iconMedium}
+        style={{color}}
+        onClick={onClick}
+    >
+        <i className={`fas ${iconType} ${classes.join(' ')}`}/>
     </span>
 }
 export const SmallIcon = ({iconType, color, onClick, classes = [], ...otherProps}) => {

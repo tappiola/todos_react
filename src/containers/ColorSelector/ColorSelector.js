@@ -3,7 +3,7 @@ import classes from './ColorSelector.module.css';
 import iconStyles from '../../containers/Icon/Icon.module.css';
 import {ICON_COLOR, ICON_TYPE, SmallIcon} from "../Icon/Icon";
 
-export const ColorSelector = ({options, color, onColorChange}) => {
+export const ColorSelector = ({options = [], color, onColorChange}) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const ref = useRef(null);
 
