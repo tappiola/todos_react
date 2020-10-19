@@ -1,5 +1,5 @@
 import React from 'react';
-import {Task, TaskFocusIcon, TaskCompleteCheckbox, TaskDeleteButton, TaskEditButton} from '../Task';
+import {Task, TaskCompleteCheckbox, TaskDeleteButton, TaskEditButton, TaskFocusIcon} from '../Task';
 import {mount, shallow} from 'enzyme';
 import classes from '../Task.module.css';
 import {CancelButton} from "../../../containers/Button/Button";
@@ -11,10 +11,11 @@ const TASK = {
     isFocusedOn: true,
     projectId: 2
 };
+
 const PROJECTS = [
-     {id: 1, name: 'project1', description: 'description1'},
-     {id: 2, name: 'project2', description: 'description2'},
-     {id: 3, name: 'project3', description: 'description3'},
+    {id: 1, name: 'project1', description: 'description1'},
+    {id: 2, name: 'project2', description: 'description2'},
+    {id: 3, name: 'project3', description: 'description3'},
 ]
 const PROJECT = PROJECTS[1];
 const PROJECT_FOCUS = {id: 'focus', name: 'Focus', description: 'test description'};
@@ -51,7 +52,7 @@ describe('<Task/>', () => {
     });
 
     it("should pass task focused to TaskFocusIcon (isFocusedOn: false)", () => {
-    props.task = {...props.task, isFocusedOn: false};
+        props.task = {...props.task, isFocusedOn: false};
         const wrapper = shallow(<Task {...props}/>);
         expect(wrapper.find(TaskFocusIcon).props().focused).toEqual(false);
     });
@@ -84,7 +85,7 @@ describe('<Task/>', () => {
     });
 
     it("should not show 'taskProject' label, if currentProject is not 'focus'", () => {
-                const wrapper = mount(<Task {...props}/>);
+        const wrapper = mount(<Task {...props}/>);
         expect(wrapper.find('.' + classes.projectLabel)).toHaveLength(0);
     });
 
@@ -97,7 +98,7 @@ describe('<Task/>', () => {
         expect(props.onTaskEdit).toHaveBeenCalledWith(
             TASK.id,
             {"name": TASK.name, "projectId": TASK.projectId}
-            );
+        );
     });
 
     it("'onTaskEdit' should be called on Focus button click", () => {
@@ -107,7 +108,7 @@ describe('<Task/>', () => {
         expect(props.onTaskEdit).toHaveBeenCalledWith(
             TASK.id,
             {"isFocusedOn": false}
-    )
+        )
     });
 
     it("'onTaskEdit' should be called on Complete button click", () => {
@@ -117,7 +118,7 @@ describe('<Task/>', () => {
         expect(props.onTaskEdit).toHaveBeenCalledWith(
             TASK.id,
             {"isComplete": true}
-    )
+        )
     });
 
     it("'onTaskDelete' should be called on Delete button click", () => {
@@ -132,7 +133,7 @@ describe('<Task/>', () => {
         const wrapper = mount(<Task {...props}/>);
         wrapper.find('.' + classes.container).simulate('mouseenter');
         wrapper.find(TaskEditButton).simulate('click');
-        wrapper.setProps({ activeTaskId: 8 });
+        wrapper.setProps({activeTaskId: 8});
         wrapper.update();
         expect(wrapper.find('.' + classes.taskEditInputContainer)).toHaveLength(0);
     });
@@ -193,7 +194,7 @@ describe('<Task/>', () => {
         const wrapper = mount(<Task {...props}/>);
         wrapper.find('.' + classes.container).simulate('mouseenter');
         wrapper.find(TaskEditButton).simulate('click');
-        wrapper.find('.' + classes.taskEditInput).simulate('change', { target: { value: 'new text' }} );
+        wrapper.find('.' + classes.taskEditInput).simulate('change', {target: {value: 'new text'}});
         expect(wrapper.find('.' + classes.taskEditInput).get(0).props.value).toEqual('new text');
     });
 })

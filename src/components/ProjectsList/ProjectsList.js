@@ -7,24 +7,24 @@ import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 import {URLS} from "../../constants/urls";
 
 const Project = ({project, onMenuClose, onProjectEdit}) =>
-        <NavLink to={`${URLS.PROJECTS}/${project.id}`} activeClassName={classes.active}>
-            <div className={classes.projectItem} onClick={onMenuClose}>
-                <div>
-                    <SmallIcon
-                        iconType={ICON_TYPE.CIRCLE}
-                        color={COLORS[project.color] || DEFAULT_COLOR.colorCode}
-                        classes={[iconStyles.bulletPoint]}
-                    />
-                    {project.name}
-                </div>
-                <MediumIcon
-                    iconType={ICON_TYPE.EDIT}
-                    color={ICON_COLOR.GREY}
-                    classes={[iconStyles.showHover]}
-                    onClick={() => onProjectEdit(project)}
+    <NavLink to={`${URLS.PROJECTS}/${project.id}`} activeClassName={classes.active}>
+        <div className={classes.projectItem} onClick={onMenuClose}>
+            <div>
+                <SmallIcon
+                    iconType={ICON_TYPE.CIRCLE}
+                    color={COLORS[project.color] || DEFAULT_COLOR.colorCode}
+                    classes={[iconStyles.bulletPoint]}
                 />
+                {project.name}
             </div>
-        </NavLink>
+            <MediumIcon
+                iconType={ICON_TYPE.EDIT}
+                color={ICON_COLOR.GREY}
+                classes={[iconStyles.showHover]}
+                onClick={() => onProjectEdit(project)}
+            />
+        </div>
+    </NavLink>
 
 export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit}) => {
 

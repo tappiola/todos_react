@@ -15,11 +15,11 @@ const URL_TO_MODE = {
 }
 
 const AuthModeSelector = ({authMode, mode, onAuthModeSelect}) => {
-        return <div
-            className={authMode === mode ? classes.selected : ''}
-            onClick={onAuthModeSelect}
-        >{mode}</div>
-    }
+    return <div
+        className={authMode === mode ? classes.selected : ''}
+        onClick={onAuthModeSelect}
+    >{mode}</div>
+}
 
 export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
     const history = useHistory();
@@ -29,13 +29,13 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
     const [password, setPassword] = useState('');
 
     const authModeSelectHandler = mode => {
-                setAuthMode(mode);
-                setEmail('');
-                setPassword('');
-                if (error) {
-                    onErrorDismiss();
-                }
-                history.push(mode === AUTH_MODE.LOGIN ? URLS.LOGIN : URLS.REGISTER);
+        setAuthMode(mode);
+        setEmail('');
+        setPassword('');
+        if (error) {
+            onErrorDismiss();
+        }
+        history.push(mode === AUTH_MODE.LOGIN ? URLS.LOGIN : URLS.REGISTER);
     }
 
     return <div className={classes.container}>

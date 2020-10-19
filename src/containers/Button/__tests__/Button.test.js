@@ -54,7 +54,7 @@ describe('<DeleteButton/>', () => {
         expect(buttonWrapper.text()).toBe("Click me");
     });
 
-        it("should have default style", () => {
+    it("should have default style", () => {
         const wrapper = mount(<DeleteButton>Click me</DeleteButton>);
         const buttonWrapper = wrapper.find("button");
         expect(buttonWrapper.get(0).props.className).toEqual(expect.stringContaining(classes.button));
@@ -86,7 +86,7 @@ describe('<CancelButton/>', () => {
         expect(buttonWrapper.text()).toBe("Click me");
     });
 
-        it("should have default style", () => {
+    it("should have default style", () => {
         const wrapper = mount(<CancelButton>Click me</CancelButton>);
         const buttonWrapper = wrapper.find("button");
         expect(buttonWrapper.get(0).props.className).toEqual(expect.stringContaining(classes.button));

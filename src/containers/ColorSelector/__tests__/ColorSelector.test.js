@@ -26,7 +26,8 @@ it("should show all options on click", () => {
 
 
 it("should close on option click", () => {
-    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {
+    }}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     const option = wrapper.find(`.${classes.select} li`).first();
@@ -58,7 +59,8 @@ it("should close on option click", () => {
 
 
 it("should receive options from parent", () => {
-    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {
+    }}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     const option = wrapper.find(`.${classes.select} li`).first();
@@ -67,7 +69,8 @@ it("should receive options from parent", () => {
 });
 
 it("should receive initial color from parent", () => {
-    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {
+    }}/>);
     const selectedColor = wrapper.find(`.${classes.selectedColor} div`);
     expect(selectedColor.children().get(0).props.color).toEqual(OPTIONS[1].colorCode);
     expect(selectedColor.children().at(1).text()).toEqual(OPTIONS[1].humanColor);

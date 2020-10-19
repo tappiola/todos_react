@@ -56,7 +56,8 @@
     width: 100%;
 }
 
-.save {}
+.save {
+}
 
 @media (max-width: 900px) {
     .taskEditInputContainer {
