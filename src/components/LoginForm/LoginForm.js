@@ -4,7 +4,7 @@ import {useHistory} from "react-router";
 import {URLS} from "../../constants/urls";
 import {Button} from "../../containers/Button/Button";
 
-const AUTH_MODE = {
+export const AUTH_MODE = {
     LOGIN: 'Login',
     REGISTER: 'Register'
 }
@@ -14,7 +14,7 @@ const URL_TO_MODE = {
     [URLS.REGISTER]: AUTH_MODE.REGISTER
 }
 
-const AuthModeSelector = ({authMode, mode, onAuthModeSelect}) => {
+export const AuthModeSelector = ({authMode, mode, onAuthModeSelect}) => {
     return <div
         className={authMode === mode ? classes.selected : ''}
         onClick={onAuthModeSelect}
