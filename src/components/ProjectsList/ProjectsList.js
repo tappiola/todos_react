@@ -6,9 +6,7 @@ import {NavLink} from "react-router-dom";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 import {URLS} from "../../constants/urls";
 
-export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit}) => {
-
-    const Project = ({project}) =>
+const Project = ({project, onMenuClose, onProjectEdit}) =>
         <NavLink to={`${URLS.PROJECTS}/${project.id}`} activeClassName={classes.active}>
             <div className={classes.projectItem} onClick={onMenuClose}>
                 <div>
@@ -27,6 +25,8 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit
                 />
             </div>
         </NavLink>
+
+export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit}) => {
 
     return <div className={classes.menuItems}>
         <NavLink to={URLS.INBOX} activeClassName={classes.active}>
@@ -54,7 +54,13 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit
             />
         </div>
         <div>
-            {projects.map((p, i) => <Project key={i} project={p}/>)}
+            {projects.map((p, i) => (
+                <Project
+                    key={i}
+                    project={p}
+                    onMenuClose={onMenuClose}
+                    onProjectEdit={onProjectEdit}
+                />))}
         </div>
     </div>
 }

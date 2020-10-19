@@ -1,6 +1,6 @@
 import React from 'react';
 import {TasksList} from '../TasksList';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import Task from "../../Task";
 import classes from "../TasksList.module.css";
 import {Message} from "../../../containers/Message/Message";
@@ -16,7 +16,7 @@ const PROJECT = {id: 1, name: 'TestProject', description: 'test description'};
 const PROJECT_INBOX = {id: null, name: 'Inbox', description: 'test description'};
 const PROJECT_FOCUS = {id: 'focus', name: 'Focus', description: 'test description'};
 
-describe('TasksList', () => {
+describe('<TasksList/>', () => {
     it("Should call onLoad once after component rendering", () => {
         const onLoad = jest.fn();
         const wrapper = shallow(<TasksList tasks={TASKS} project={PROJECT} onLoad={onLoad}/>);
@@ -39,7 +39,7 @@ describe('TasksList', () => {
     });
 
     it("Should render name of the project for normal project", () => {
-                const wrapper = shallow(<TasksList tasks={TASKS} project={PROJECT}/>);
+        const wrapper = shallow(<TasksList tasks={TASKS} project={PROJECT}/>);
         expect(wrapper.find('.' + classes.title).text()).toEqual(PROJECT.name);
     });
 

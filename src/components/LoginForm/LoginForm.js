@@ -14,6 +14,13 @@ const URL_TO_MODE = {
     [URLS.REGISTER]: AUTH_MODE.REGISTER
 }
 
+const AuthModeSelector = ({authMode, mode, onAuthModeSelect}) => {
+        return <div
+            className={authMode === mode ? classes.selected : ''}
+            onClick={onAuthModeSelect}
+        >{mode}</div>
+    }
+
 export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
     const history = useHistory();
 
@@ -21,10 +28,7 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const AuthModeSelector = ({mode}) => {
-        return <div
-            className={authMode === mode ? classes.selected : ''}
-            onClick={() => {
+    const authModeSelectHandler = mode => {
                 setAuthMode(mode);
                 setEmail('');
                 setPassword('');
@@ -32,8 +36,6 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
                     onErrorDismiss();
                 }
                 history.push(mode === AUTH_MODE.LOGIN ? URLS.LOGIN : URLS.REGISTER);
-            }}
-        >{mode}</div>
     }
 
     return <div className={classes.container}>
@@ -45,8 +47,16 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
             authMode === AUTH_MODE.LOGIN ? onLogin(email, password) : onRegister(email, password);
         }}>
             <div className={classes.modeSelector}>
-                <AuthModeSelector mode={AUTH_MODE.LOGIN}/>
-                <AuthModeSelector mode={AUTH_MODE.REGISTER}/>
+                <AuthModeSelector
+                    authMode={authMode}
+                    mode={AUTH_MODE.LOGIN}
+                    onAuthModeSelect={() => authModeSelectHandler(AUTH_MODE.LOGIN)}
+                />
+                <AuthModeSelector
+                    authMode={authMode}
+                    mode={AUTH_MODE.REGISTER}
+                    onAuthModeSelect={() => authModeSelectHandler(AUTH_MODE.REGISTER)}
+                />
             </div>
             <input
                 type="email"

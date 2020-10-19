@@ -56,6 +56,8 @@
     width: 100%;
 }
 
+.save {}
+
 @media (max-width: 900px) {
     .taskEditInputContainer {
         display: flex;

@@ -15,6 +15,40 @@ const useFocus = () => {
     return [htmlElRef, setFocus]
 }
 
+export const TaskFocusIcon = ({focused, onFocusChange}) => {
+    return <Icon
+        iconType={ICON_TYPE.STAR}
+        color={focused ? ICON_COLOR.YELLOW : ICON_COLOR.WHITE}
+        onClick={onFocusChange}
+        classes={[iconStyles.expandable]}
+    />
+}
+
+export const TaskDeleteButton = ({onTaskDelete}) => {
+    return <Icon
+        iconType={ICON_TYPE.DELETE}
+        color={ICON_COLOR.GREY}
+        onClick={onTaskDelete}
+    />
+}
+
+export const TaskCompleteCheckbox = ({complete, color, onTaskCompleteToggle}) => {
+    return <Icon
+        iconType={complete ? ICON_TYPE.CHECKBOX_COMPLETE : ICON_TYPE.CHECKBOX_INCOMPLETE}
+        color={COLORS[color] || DEFAULT_COLOR.colorCode}
+        onClick={onTaskCompleteToggle}
+        classes={[iconStyles.taskCheckbox]}
+    />
+}
+
+export const TaskEditButton = ({onTaskEditModeActivate}) => {
+    return <Icon
+        iconType={ICON_TYPE.EDIT}
+        color={ICON_COLOR.GREY}
+        onClick={onTaskEditModeActivate}
+    />
+}
+
 export const Task = (
     {task, currentProject, taskProject, projects, onTaskEdit, onTaskDelete, activeTaskId, onSetActiveTask}
 ) => {
@@ -33,59 +67,31 @@ export const Task = (
         }
     }, [activeTaskId, id]);
 
+    useEffect(() => {
+        isInputActive && setInputFocus()
+    }, [isInputActive, setInputFocus]);
+
     const taskSaveHandler = () => {
         onTaskEdit(id, {name: inputValue, projectId: projectId === EMPTY_ID ? null : projectId});
         setIsInputActive(false);
     }
 
-    const TaskCompleteCheckbox = () => {
-        return <Icon
-            iconType={complete ? ICON_TYPE.CHECKBOX_COMPLETE : ICON_TYPE.CHECKBOX_INCOMPLETE}
-            color={COLORS[currentProject.color] || DEFAULT_COLOR.colorCode}
-            onClick={() => {
-                const newStatus = !complete;
-                setComplete(newStatus);
-                onTaskEdit(id, {isComplete: newStatus});
-            }}
-            classes={[iconStyles.taskCheckbox]}
-        />
+    const focusChangeHandler = () => {
+        const newStatus = !focused;
+        setFocused(newStatus);
+        onTaskEdit(id, {isFocusedOn: newStatus});
+    };
+
+    const taskCompleteHandler = () => {
+        const newStatus = !complete;
+        setComplete(newStatus);
+        onTaskEdit(id, {isComplete: newStatus});
     }
 
-    const TaskFocusIcon = () => {
-        return <Icon
-            iconType={ICON_TYPE.STAR}
-            color={focused ? ICON_COLOR.YELLOW : ICON_COLOR.WHITE}
-            onClick={() => {
-                const newStatus = !focused;
-                setFocused(newStatus);
-                onTaskEdit(id, {isFocusedOn: newStatus});
-            }}
-            classes={[iconStyles.expandable]}
-        />
-    }
-
-    useEffect(() => {
-        isInputActive && setInputFocus()
-    }, [isInputActive, setInputFocus]);
-
-    const TaskEditButton = () => {
-        return <Icon
-            iconType={ICON_TYPE.EDIT}
-            color={ICON_COLOR.GREY}
-            onClick={() => {
-                onSetActiveTask(id);
-                setIsInputActive(true);
-                setInputValue(task.name);
-            }}
-        />
-    }
-
-    const TaskDeleteButton = () => {
-        return <Icon
-            iconType={ICON_TYPE.DELETE}
-            color={ICON_COLOR.GREY}
-            onClick={() => onTaskDelete(id)}
-        />
+    const taskEditHandler = () => {
+        onSetActiveTask(id);
+        setIsInputActive(true);
+        setInputValue(task.name);
     }
 
     return <div
@@ -95,7 +101,11 @@ export const Task = (
     >
         <div className={classes.firstRow}>
             <div className={classes.firstRowText}>
-                <TaskCompleteCheckbox/>
+                <TaskCompleteCheckbox
+                    complete={complete}
+                    color={currentProject.color}
+                    onTaskCompleteToggle={taskCompleteHandler}
+                />
                 {isInputActive
                     ? <div className={classes.taskEditInputContainer}>
                         <input
@@ -116,18 +126,18 @@ export const Task = (
             </div>
             <div>
                 {!isInputActive && isHovered && <>
-                    <TaskDeleteButton/>
-                    <TaskEditButton/>
+                    <TaskDeleteButton onTaskDelete={() => onTaskDelete(id)}/>
+                    <TaskEditButton onTaskEditModeActivate={taskEditHandler}/>
                 </>}
                 {(currentProject.id === 'focus' && taskProject && !isInputActive) && <div
                     className={classes.projectLabel}
                     style={{backgroundColor: COLORS[taskProject.color] || DEFAULT_COLOR.colorCode}}
                 >{taskProject.name}</div>}
-                <TaskFocusIcon/>
+                <TaskFocusIcon focused={focused} onFocusChange={focusChangeHandler}/>
             </div>
         </div>
         {isInputActive && <div>
-            <Button disabled={!inputValue} onClick={taskSaveHandler}>Save</Button>
+            <Button classes={[classes.save]} disabled={!inputValue} onClick={taskSaveHandler}>Save</Button>
             <CancelButton onClick={() => setIsInputActive(false)}/>
         </div>}
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {ColorSelector} from '../ColorSelector';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import classes from '../ColorSelector.module.css';
 
 const OPTIONS = [
@@ -10,14 +10,14 @@ const OPTIONS = [
 ]
 
 it("should open on click", () => {
-    const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     expect(wrapper.exists('.' + classes.select)).toEqual(true);
 });
 
 it("should show all options on click", () => {
-    const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     const options = wrapper.find(`.${classes.select} li`);
@@ -26,7 +26,7 @@ it("should show all options on click", () => {
 
 
 it("should close on option click", () => {
-    const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     const option = wrapper.find(`.${classes.select} li`).first();
@@ -35,7 +35,7 @@ it("should close on option click", () => {
 });
 
 // it("should select new option on click", () => {
-//     const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+//     const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
 //     const selector = wrapper.find('.' + classes.selectedColor);
 //     selector.simulate("click");
 //     const option = wrapper.find(`.${classes.select} li`).first();
@@ -47,7 +47,7 @@ it("should close on option click", () => {
 
 
 // it("should close on click outside", () => {
-//     const wrapper = mount(<>
+//     const wrapper = shallow(<>
 //         <div className="outside">Outside</div>
 //         <ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>
 //         </>);
@@ -58,7 +58,7 @@ it("should close on option click", () => {
 
 
 it("should receive options from parent", () => {
-    const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     const option = wrapper.find(`.${classes.select} li`).first();
@@ -67,7 +67,7 @@ it("should receive options from parent", () => {
 });
 
 it("should receive initial color from parent", () => {
-    const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={() => {}}/>);
     const selectedColor = wrapper.find(`.${classes.selectedColor} div`);
     expect(selectedColor.children().get(0).props.color).toEqual(OPTIONS[1].colorCode);
     expect(selectedColor.children().at(1).text()).toEqual(OPTIONS[1].humanColor);
@@ -75,7 +75,7 @@ it("should receive initial color from parent", () => {
 
 it("should call 'onColorChange' on option click", () => {
     const onColorChange = jest.fn();
-    const wrapper = mount(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={onColorChange}/>);
+    const wrapper = shallow(<ColorSelector options={OPTIONS} color={OPTIONS[1]} onColorChange={onColorChange}/>);
     const selector = wrapper.find('.' + classes.selectedColor);
     selector.simulate("click");
     const option = wrapper.find(`.${classes.select} li`).first();

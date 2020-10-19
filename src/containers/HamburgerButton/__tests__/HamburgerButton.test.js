@@ -1,5 +1,5 @@
 import React from "react";
-import {mount, render, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import {HamburgerButton} from "../HamburgerButton";
 
 it("should show close button, when menu is open", () => {
