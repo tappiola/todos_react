@@ -16,7 +16,7 @@ const URL_TO_MODE = {
 
 export const AuthModeSelector = ({authMode, mode, onAuthModeSelect}) => {
     return <div
-        className={authMode === mode ? classes.selected : ''}
+        className={`${mode.toLowerCase()} ${authMode === mode ? classes.selected : ''}`}
         onClick={onAuthModeSelect}
     >{mode}</div>
 }
