@@ -4,7 +4,7 @@ import React from "react";
 import classes from "../ErrorPopup.module.css";
 import {MediumIcon} from "../../../containers/Icon/Icon";
 
-describe('<SuccessPopup/>', () => {
+describe('<ErrorPopup/>', () => {
 
     it("should pass error from props", () => {
         const wrapper = shallow(<ErrorPopup error={{type: 'Error', message: "Error message"}}/>);
@@ -23,7 +23,7 @@ describe('<SuccessPopup/>', () => {
             <ErrorPopup
                 error={{type: 'Error', message: "Error message"}}
                 onErrorDismiss={onErrorDismiss}
-        />);
+            />);
         wrapper.find(MediumIcon).simulate('click');
         expect(onErrorDismiss).toHaveBeenCalledTimes(1);
     });

@@ -17,11 +17,6 @@ const PROJECT_INBOX = {id: null, name: 'Inbox', description: 'test description'}
 const PROJECT_FOCUS = {id: 'focus', name: 'Focus', description: 'test description'};
 
 describe('<TasksList/>', () => {
-    it("Should call onLoad once after component rendering", () => {
-        const onLoad = jest.fn();
-        const wrapper = shallow(<TasksList tasks={TASKS} project={PROJECT} onLoad={onLoad}/>);
-        expect(onLoad).toHaveBeenCalledTimes(1);
-    });
 
     it("Should render nothing if project is still loading", () => {
         const wrapper = shallow(<TasksList tasks={TASKS} project={PROJECT} isProjectsFetching={true}/>);
