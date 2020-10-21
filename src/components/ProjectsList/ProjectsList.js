@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 import {URLS} from "../../constants/urls";
 
-const Project = ({project, onMenuClose, onProjectEdit}) =>
+export const Project = ({project, onMenuClose, onProjectEdit}) =>
     <NavLink to={`${URLS.PROJECTS}/${project.id}`} activeClassName={classes.active}>
         <div className={classes.projectItem} onClick={onMenuClose}>
             <div>
@@ -20,7 +20,7 @@ const Project = ({project, onMenuClose, onProjectEdit}) =>
             <MediumIcon
                 iconType={ICON_TYPE.EDIT}
                 color={ICON_COLOR.GREY}
-                classes={[iconStyles.showHover]}
+                classes={[iconStyles.showHover, classes.editIcon]}
                 onClick={() => onProjectEdit(project)}
             />
         </div>
@@ -49,7 +49,7 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit
             <MediumIcon
                 iconType={ICON_TYPE.ADD}
                 color={ICON_COLOR.GREY}
-                classes={[iconStyles.expandable]}
+                classes={[iconStyles.expandable, classes.addIcon]}
                 onClick={onProjectAdd}
             />
         </div>
