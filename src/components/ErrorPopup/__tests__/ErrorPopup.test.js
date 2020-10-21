@@ -2,7 +2,7 @@ import {mount, shallow} from 'enzyme';
 import {ErrorPopup} from "../ErrorPopup";
 import React from "react";
 import classes from "../ErrorPopup.module.css";
-import {MediumIcon} from "../../../containers/Icon/Icon";
+import {MediumIcon} from "../../Icon/Icon";
 
 describe('<ErrorPopup/>', () => {
 

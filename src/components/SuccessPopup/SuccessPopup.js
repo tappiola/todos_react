@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './SuccessPopup.module.css';
-import {ICON_COLOR, ICON_TYPE, MediumIcon} from "../../containers/Icon/Icon";
-import iconStyles from '../../containers/Icon/Icon.module.css';
+import {ICON_COLOR, ICON_TYPE, MediumIcon} from "../Icon/Icon";
+import iconStyles from '../Icon/Icon.module.css';
 
 export const SuccessPopup = ({successMessage, onSuccessDismiss}) => {
     if (!successMessage) {
@@ -12,7 +12,7 @@ export const SuccessPopup = ({successMessage, onSuccessDismiss}) => {
         <MediumIcon
             iconType={ICON_TYPE.CLOSE}
             color={ICON_COLOR.WHITE}
-            classes={[iconStyles.topRight]}
+            className={iconStyles.topRight}
             onClick={onSuccessDismiss}
         />
         {successMessage}

@@ -1,0 +1,50 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    padding: 10px;
+    font-size: 16px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.form button {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.container {
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    margin: 7% auto auto auto;
+}
+
+.modeSelector {
+    display: flex;
+}
+
+.modeSelector a {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.modeSelector a.selected {
+    border-bottom: 4px solid darkslateblue;
+    font-weight: bold;
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: #bf2c2c;
+}

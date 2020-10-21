@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './app';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from 'redux-devtools-extension';
-import authReducer from './store/reducers/auth';
-import firebaseReducer from './store/reducers/fb';
-import * as authActionCreators from './store/actions/auth';
+import authReducer from './user/store/authReducer';
+import firebaseReducer from './projects/store/projectsAndTasksReducer';
+import * as authActionCreators from './user/store/actions';
 
 const rootReducer = combineReducers({
     firebase: firebaseReducer,

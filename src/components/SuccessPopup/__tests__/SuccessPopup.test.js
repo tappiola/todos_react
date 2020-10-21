@@ -2,7 +2,7 @@ import {mount, shallow} from 'enzyme';
 import {SuccessPopup} from "../SuccessPopup";
 import React from "react";
 import classes from "../SuccessPopup.module.css";
-import {MediumIcon} from "../../../containers/Icon/Icon";
+import {MediumIcon} from "../../Icon/Icon";
 
 describe('<SuccessPopup/>', () => {
 
