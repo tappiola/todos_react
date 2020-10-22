@@ -53,8 +53,8 @@ export const firebaseError = (error) => {
     };
 }
 
-export const errorDismiss = () => ({type: actionTypes.FB_ERROR_DISMISS})
-export const successDismiss = () => ({type: actionTypes.SUCCESS_DISMISS})
+export const errorDismiss = () => ({type: actionTypes.FB_ERROR_DISMISS});
+export const successDismiss = () => ({type: actionTypes.SUCCESS_DISMISS});
 
 const firebaseDispatch = (action, message) => {
     return (dispatch, getState) => {

@@ -4,6 +4,7 @@ import {Icon, ICON_COLOR, ICON_TYPE} from "../../components/Icon/Icon";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 import {Button, CancelButton} from "../../components/Button/Button";
 import iconStyles from '../../components/Icon/Icon.module.css';
+import PropTypes from 'prop-types';
 
 const EMPTY_ID = 'not-selected';
 
@@ -127,4 +128,60 @@ export const Task = (
             <CancelButton onClick={() => onSetActiveTask(null)}/>
         </div>}
     </div>
+}
+
+TaskFocusIcon.propTypes = {
+    focused: PropTypes.bool.isRequired,
+    onFocusChange: PropTypes.func
+}
+
+TaskDeleteButton.propTypes = {
+    onTaskDelete: PropTypes.func.isRequired
+}
+
+TaskCompleteCheckbox.propTypes = {
+    complete: PropTypes.bool.isRequired,
+    color: PropTypes.string,
+    onTaskCompleteToggle: PropTypes.func.isRequired
+}
+
+TaskEditButton.propTypes = {
+    onTaskEditModeActivate: PropTypes.func.isRequired
+}
+
+const projectShape = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    description: PropTypes.string,
+    userId: PropTypes.string.isRequired
+})
+
+const projectShapeOptional = PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    description: PropTypes.string,
+    userId: PropTypes.string
+})
+
+const taskShape = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    isComplete: PropTypes.bool.isRequired,
+    createdAt: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    projectId: PropTypes.string,
+    isFocusedOn: PropTypes.bool.isRequired
+})
+
+Task.propTypes = {
+    task: taskShape,
+    currentProject: projectShapeOptional.isRequired,
+    taskProject: projectShapeOptional.isRequired,
+    projects: PropTypes.arrayOf(projectShape.isRequired),
+    onTaskEdit: PropTypes.func.isRequired,
+    onTaskDelete: PropTypes.func.isRequired,
+    isActive: PropTypes.bool.isRequired,
+    onSetActiveTask: PropTypes.func.isRequired
 }

@@ -1,6 +1,7 @@
 import styles from './Icon.module.css';
 import React from "react";
 import {COLORS} from "../../constants/colors";
+import PropTypes from 'prop-types';
 
 export const ICON_TYPE = {
     CHECKBOX_COMPLETE: 'fa-check-square',
@@ -59,3 +60,27 @@ export const SmallIcon = ({iconType, color, onClick, className = '', ...otherPro
         <i className={`fas ${iconType} ${className}`}/>
     </span>
 }
+
+Icon.propTypes = {
+    iconType: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
+    otherProps: PropTypes.object
+};
+
+MediumIcon.propTypes = {
+    iconType: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
+    otherProps: PropTypes.object
+};
+
+SmallIcon.propTypes = {
+    iconType: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    className: PropTypes.string,
+    otherProps: PropTypes.object
+};

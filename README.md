@@ -3,6 +3,7 @@
 Frontend: React + Redux
 DB: Firestore
 Backend: Firebase
+Tests: Jest + Enzyme
 
 Core features:
  * several task categories: Inbox, Focus and custom ones added by the user 

@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import classes from './ColorSelector.module.css';
 import iconStyles from '../Icon/Icon.module.css';
 import {ICON_COLOR, ICON_TYPE, SmallIcon} from "../Icon/Icon";
+import PropTypes from "prop-types";
 
 export const ColorSelector = ({options = [], color, onColorChange}) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
@@ -51,4 +52,15 @@ export const ColorSelector = ({options = [], color, onColorChange}) => {
             }
         </ul>}
     </div>
+}
+
+const colorShape = PropTypes.shape({
+    humanColor: PropTypes.string.isRequired,
+    colorCode: PropTypes.string.isRequired
+});
+
+ColorSelector.propTypes = {
+    options: PropTypes.arrayOf(colorShape).isRequired,
+    color: colorShape.isRequired,
+    onColorChange: PropTypes.func.isRequired
 }

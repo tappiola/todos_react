@@ -4,6 +4,7 @@ import {Route} from "react-router";
 import {URLS} from "../../constants/urls";
 import {Button} from "../../components/Button/Button";
 import {NavLink} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export const AUTH_MODE = {
     LOGIN: 'Login',
@@ -88,3 +89,22 @@ export const LoginForm = ({onLogin, onRegister, error, onErrorDismiss}) => {
         </div>
     );
 };
+
+AuthModeSelector.propTypes = {
+    to: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+}
+
+Form.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    buttonText: PropTypes.string.isRequired
+}
+
+LoginForm.propTypes = {
+    onLogin: PropTypes.func.isRequired,
+    onRegister: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    onErrorDismiss: PropTypes.func.isRequired
+}

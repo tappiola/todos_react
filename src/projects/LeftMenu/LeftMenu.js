@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import classes from './LeftMenu.module.css';
 import ProjectsList from "../ProjectsList";
 import ProjectModal from "../ProjectModal";
+import PropTypes from 'prop-types';
 
 export const LeftMenu = ({menuOpen, projects, onMenuClose}) => {
 
@@ -32,4 +33,17 @@ export const LeftMenu = ({menuOpen, projects, onMenuClose}) => {
             />
         </div>
     </>
+}
+const projectShape = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired
+})
+
+LeftMenu.propTypes = {
+    menuOpen: PropTypes.bool.isRequired,
+    projects: PropTypes.arrayOf(projectShape),
+    onMenuClose: PropTypes.func
 }

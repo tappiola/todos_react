@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
 import {URLS} from "../../constants/urls";
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 
 export const Project = ({project, onMenuClose, onProjectEdit}) =>
     <NavLink to={`${URLS.PROJECTS}/${project.id}`} activeClassName={classes.active}>
@@ -64,4 +65,25 @@ export const ProjectsList = ({projects, onMenuClose, onProjectAdd, onProjectEdit
                 />))}
         </div>
     </div>
+}
+
+const projectShape = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired
+})
+
+Project.propTypes = {
+    project: projectShape.isRequired,
+    onMenuClose: PropTypes.func.isRequired,
+    onProjectEdit: PropTypes.func.isRequired
+};
+
+ProjectsList.propTypes = {
+    projects: PropTypes.arrayOf(projectShape),
+    onMenuClose: PropTypes.func.isRequired,
+    onProjectAdd: PropTypes.func.isRequired,
+    onProjectEdit: PropTypes.func.isRequired
 }

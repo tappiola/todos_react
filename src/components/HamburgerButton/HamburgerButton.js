@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './HamburgerButton.module.css';
+import PropTypes from 'prop-types';
 
 export const HamburgerButton = ({menuOpen, onButtonClick}) => {
     return <button
@@ -14,4 +15,9 @@ export const HamburgerButton = ({menuOpen, onButtonClick}) => {
                   d="M4.5 5h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1zm0 6h15a.5.5 0 1 1 0 1h-15a.5.5 0 1 1 0-1z"></path>
         </svg>
     </button>
+}
+
+HamburgerButton.propTypes = {
+    menuOpen: PropTypes.bool.isRequired,
+    onButtonClick: PropTypes.func.isRequired
 }

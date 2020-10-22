@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import * as actionCreators from "../user/store/actions";
 import {URLS} from "../constants/urls";
 import {AppProtected} from "./AppProtected";
+import PropTypes from "prop-types";
 
 const App = ({userId, email, userLoadComplete, loadProjectsAndTasks, clearProjectsAndTasks, isDataLoading, onLogout}) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -45,6 +46,16 @@ const App = ({userId, email, userLoadComplete, loadProjectsAndTasks, clearProjec
             {!userId && <Redirect to={URLS.LOGIN}/>}
         </Switch>
     </div>
+}
+
+App.propTypes = {
+    userId: PropTypes.string,
+    email: PropTypes.string,
+    userLoadComplete: PropTypes.bool.isRequired,
+    loadProjectsAndTasks: PropTypes.func,
+    clearProjectsAndTasks: PropTypes.func,
+    isDataLoading: PropTypes.bool,
+    onLogout: PropTypes.func
 }
 
 const mapStateToProps = ({auth: {userId, email, userLoadComplete}}) => ({userId, email, userLoadComplete});

@@ -5,6 +5,7 @@ import TasksList from "../projects/TasksList";
 import {Redirect, Route, Switch} from "react-router";
 import {URLS} from "../constants/urls";
 import {Message} from "../components/Message/Message";
+import PropTypes from "prop-types";
 
 export const AppProtected = ({menuOpen, setMenuOpen}) => {
 
@@ -28,4 +29,9 @@ export const AppProtected = ({menuOpen, setMenuOpen}) => {
             </Route>
         </Switch>
     </div>
+}
+
+AppProtected.propTypes = {
+    menuOpen: PropTypes.bool.isRequired,
+    setMenuOpen: PropTypes.func
 }

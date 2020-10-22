@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {COLORS, DEFAULT_COLOR} from "../../constants/colors";
-import {ICON_COLOR, ICON_TYPE, MediumIcon} from "../../components/Icon/Icon";
+import {ICON_TYPE, MediumIcon} from "../../components/Icon/Icon";
 import classes from './TaskAdd.module.css';
 import {Button, CancelButton} from "../../components/Button/Button";
 import iconStyles from '../../components/Icon/Icon.module.css';
+import PropTypes from 'prop-types';
 
 export const TaskAdd = ({project, onTaskAdd}) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -43,8 +44,21 @@ export const TaskAdd = ({project, onTaskAdd}) => {
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsInputActive(true)}
         >
-            <MediumIcon iconType={ICON_TYPE.ADD} color={ICON_COLOR} className={iconStyles.bulletPoint}/>
+            <MediumIcon iconType={ICON_TYPE.ADD} color='inherit' className={iconStyles.bulletPoint}/>
             Add task
         </div>
     }
+}
+
+const projectShape = PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    description: PropTypes.string,
+    userId: PropTypes.string
+})
+
+TaskAdd.propTypes = {
+    project: projectShape,
+    onTaskAdd: PropTypes.func.isRequired
 }

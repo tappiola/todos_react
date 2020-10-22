@@ -5,6 +5,7 @@ import {ColorSelector} from "../../components/ColorSelector/ColorSelector";
 import {useHistory} from "react-router";
 import {URLS} from "../../constants/urls";
 import {Button, CancelButton, DeleteButton} from "../../components/Button/Button";
+import PropTypes from 'prop-types';
 
 export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit, onProjectDelete}) => {
     const [name, setName] = useState(project?.name || '');
@@ -55,4 +56,19 @@ export const ProjectModal = ({project, onModalClose, onProjectAdd, onProjectEdit
             </div>
         </div>
     </>
+}
+const projectShape = PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    color: PropTypes.string,
+    description: PropTypes.string,
+    userId: PropTypes.string
+})
+
+ProjectModal.propTypes = {
+    project: projectShape,
+    onModalClose: PropTypes.func.isRequired,
+    onProjectAdd: PropTypes.func.isRequired,
+    onProjectEdit: PropTypes.func.isRequired,
+    onProjectDelete: PropTypes.func.isRequired
 }
