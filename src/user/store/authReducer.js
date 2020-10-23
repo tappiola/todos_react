@@ -26,7 +26,8 @@ const authReducer = (state = initialState, action) => {
         case actionTypes.AUTH_ERROR:
             return {
                 ...state,
-                error: action.payload.error
+                error: action.payload.error,
+                userLoadComplete: true
             };
         case actionTypes.AUTH_ERROR_DISMISS:
             return {
