@@ -6,9 +6,9 @@ import {Router} from "react-router";
 import {createMemoryHistory} from "history";
 
 const PROJECTS = [
-    {id: 1, name: 'project1', description: 'description1'},
-    {id: 2, name: 'project2', description: 'description2'},
-    {id: 3, name: 'project3', description: 'description3'},
+    {id: '1', name: 'project1', description: 'description1'},
+    {id: '2', name: 'project2', description: 'description2'},
+    {id: '3', name: 'project3', description: 'description3'},
 ]
 
 const HistoryWrapper = ({children}) => {

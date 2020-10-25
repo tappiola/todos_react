@@ -2,15 +2,15 @@ import reducer from '../projectsAndTasksReducer';
 import * as types from '../actionTypes';
 
 const projects = [
-    {id: 1, name: 'project1', description: 'description1'},
-    {id: 2, name: 'project2', description: 'description2'},
-    {id: 3, name: 'project3', description: 'description3'},
+    {id: '1', name: 'project1', description: 'description1'},
+    {id: '2', name: 'project2', description: 'description2'},
+    {id: '3', name: 'project3', description: 'description3'},
 ]
 
 const tasks = [
-    {id: 1, name: 'task1'},
-    {id: 2, name: 'task2'},
-    {id: 3, name: 'task3'}
+    {id: '1', name: 'task1'},
+    {id: '2', name: 'task2'},
+    {id: '3', name: 'task3'}
 ]
 
 describe('projects and tasks reducer', () => {
@@ -47,17 +47,17 @@ describe('projects and tasks reducer', () => {
             "projects": [
                 {
                     "description": "description1",
-                    "id": 1,
+                    "id": '1',
                     "name": "project1"
                 },
                 {
                     "description": "description2",
-                    "id": 2,
+                    "id": '2',
                     "name": "project2"
                 },
                 {
                     "description": "description3",
-                    "id": 3,
+                    "id": '3',
                     "name": "project3"
                 }
             ],
@@ -80,15 +80,15 @@ describe('projects and tasks reducer', () => {
             "successMessage": null,
             "tasks": [
                 {
-                    id: 1,
+                    id: '1',
                     name: 'task1'
                 },
                 {
-                    id: 2,
+                    id: '2',
                     name: 'task2'
                 },
                 {
-                    id: 3,
+                    id: '3',
                     name: 'task3'
                 }
             ]

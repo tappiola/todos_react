@@ -5,7 +5,7 @@ import {MediumIcon} from "../../../components/Icon/Icon";
 import classes from '../TaskAdd.module.css';
 import {CancelButton} from "../../../components/Button/Button";
 
-const PROJECT = {id: 3, name: 'project3', description: 'description3'};
+const PROJECT = {id: '3', name: 'project3', description: 'description3'};
 
 describe('<TaskAdd/>', () => {
 

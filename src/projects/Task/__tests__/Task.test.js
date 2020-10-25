@@ -5,16 +5,16 @@ import classes from '../Task.module.css';
 import {CancelButton} from "../../../components/Button/Button";
 
 const TASK = {
-    id: 2,
+    id: '2',
     name: 'task1',
     isFocusedOn: true,
-    projectId: 2
+    projectId: '2'
 };
 
 const PROJECTS = [
-    {id: 1, name: 'project1', description: 'description1'},
-    {id: 2, name: 'project2', description: 'description2'},
-    {id: 3, name: 'project3', description: 'description3'},
+    {id: '1', name: 'project1', description: 'description1'},
+    {id: '2', name: 'project2', description: 'description2'},
+    {id: '3', name: 'project3', description: 'description3'},
 ]
 const PROJECT = PROJECTS[1];
 const PROJECT_FOCUS = {id: 'focus', name: 'Focus', description: 'test description'};
@@ -136,7 +136,7 @@ describe('<Task/>', () => {
         wrapper.find('.' + classes.container).simulate('mouseenter');
         wrapper.find(TaskEditButton).simulate('click');
         expect(props.onSetActiveTask).toHaveBeenCalledTimes(1);
-        expect(props.onSetActiveTask).toHaveBeenCalledWith(2);
+        expect(props.onSetActiveTask).toHaveBeenCalledWith('2');
     });
 
     it("onSetActiveTask should be called on Save button click", () => {

@@ -10,7 +10,7 @@ import {createMemoryHistory} from "history";
 import {Router} from "react-router";
 
 const COLOR = {"colorCode": "rgb(150, 195, 235)", "humanColor": "Light Blue"};
-const PROJECT = {id: 3, name: 'project3', description: 'description3', color: COLOR.humanColor};
+const PROJECT = {id: '3', name: 'project3', description: 'description3', color: COLOR.humanColor};
 
 describe('<ProjectModal/>', () => {
     it('should receive project data from props', () => {

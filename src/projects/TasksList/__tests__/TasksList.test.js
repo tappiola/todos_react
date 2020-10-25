@@ -7,12 +7,12 @@ import {Message} from "../../../components/Message/Message";
 import TaskAdd from "../../TaskAdd";
 
 const TASKS = [
-    {id: 1, name: 'task1'},
-    {id: 2, name: 'task2'},
-    {id: 3, name: 'task3'}
+    {id: '1', name: 'task1'},
+    {id: '2', name: 'task2'},
+    {id: '3', name: 'task3'}
 ]
 
-const PROJECT = {id: 1, name: 'TestProject', description: 'test description'};
+const PROJECT = {id: '1', name: 'TestProject', description: 'test description'};
 const PROJECT_INBOX = {id: null, name: 'Inbox', description: 'test description'};
 const PROJECT_FOCUS = {id: 'focus', name: 'Focus', description: 'test description'};
 
