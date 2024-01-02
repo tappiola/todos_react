@@ -5,6 +5,10 @@ DB: Firestore
 Backend: Firebase
 Tests: Jest + Enzyme
 
+#  Live site
+
+https://todos.tappiola.co.uk/
+
 Core features:
  * several task categories: Inbox, Focus and custom ones added by the user 
  * create, edit, delete projects
